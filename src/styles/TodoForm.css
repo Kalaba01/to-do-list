@@ -1,0 +1,28 @@
+.TodoForm {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.todo-input {
+    width: 80%;
+    padding: 10px 40px 10px 10px;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.todo-btn {
+    position: absolute;
+    right: 20px;
+    top: 25%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    color: #000;
+}
+

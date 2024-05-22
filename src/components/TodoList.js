@@ -5,11 +5,11 @@ import "../styles/TodoList.css"
 import TodoCard from './TodoCard';
 import TodoEdit from './TodoEdit';
 
-const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo, completeTodo }) => {
+const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo, completeTodo, shareTodos }) => {
   return (
     <div className={`TodoList ${todos.length === 0 ? 'hidden' : ''}`}>
       <div className="icons">
-        <span><FaShare size={20} /></span>
+        <span><FaShare onClick={()=>{shareTodos()}} size={20} /></span>
         <span><MdDelete size={20} onClick={()=>deleteAllTodos()} /></span>
       </div>
       {todos.map((todo, index) => (

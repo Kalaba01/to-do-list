@@ -17,6 +17,19 @@ const Todo = () => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
+  useEffect(() => {
+    const storageChange = () => {
+      const savedTodos = localStorage.getItem('todos');
+      setTodos(savedTodos ? JSON.parse(savedTodos) : []);
+    };
+
+    window.addEventListener('storage', storageChange);
+
+    return () => {
+      window.removeEventListener('storage', storageChange);
+    };
+  }, []);
+
   const addTodo = todo => {
     setTodos([...todos, { id: uuidv4(), task: todo, completed: false, isEditing: false }])
   }
@@ -29,18 +42,29 @@ const Todo = () => {
 
   const editTodo = id => {
     setTodos(todos.map(todo => todo.id === id ? {
-        ...todo, isEditing: !todo.isEditing
+      ...todo, isEditing: !todo.isEditing
     } : todo))
   }
 
   const upgradeTodo = (task, id) => {
     setTodos(todos.map(todo => todo.id === id ? {
-        ...todo, task, isEditing: !todo.isEditing
+      ...todo, task, isEditing: !todo.isEditing
     } : todo))
-}
+  }
 
   const deleteTodo = id => {
     setTodos(todos.filter(todo => todo.id !== id))
+  }
+
+  const shareTodos = () => {
+    if (todos.length > 0) {
+      let emailBody = "This is my todo list:\n\n";
+      for (let i = 0; i < todos.length; i++) {
+        emailBody += `${i + 1}) ${todos[i].task}\n`;
+      }
+      const mailtoLink = `mailto:?subject=My Todo List&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoLink;
+    }
   }
 
   const deleteAllTodos = () => {
@@ -56,7 +80,7 @@ const Todo = () => {
     <div className='TodoApp'>
       <h1>Get Things Done!</h1>
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} deleteAllTodos={deleteAllTodos} readTask={readTask} editTodo={editTodo} upgradeTodo={upgradeTodo} completeTodo={completeTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} deleteAllTodos={deleteAllTodos} readTask={readTask} editTodo={editTodo} upgradeTodo={upgradeTodo} completeTodo={completeTodo} shareTodos={shareTodos} />
       <TodoFooter />
     </div>
   )

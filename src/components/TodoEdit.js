@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "../styles/TodoEdit.css"
 import { BiTask } from "react-icons/bi";
 
 const TodoEdit = ({ upgradeTodo, todo }) => {
   const [input, setInput] = useState(todo.task);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   const submitTodo = e => {
     e.preventDefault();
@@ -15,7 +20,7 @@ const TodoEdit = ({ upgradeTodo, todo }) => {
 
   return (
     <form className='TodoEdit' onSubmit={submitTodo}>
-      <input type='text' className='todo-edit' placeholder='Update todo' value={input} onChange={(e) => setInput(e.target.value)} required />
+      <input ref={inputRef} type='text' className='todo-edit' placeholder='Update todo' value={input} onChange={(e) => setInput(e.target.value)} required />
       <button type="submit" className='todo-btn-edit'><BiTask size={22} /></button>
     </form>
   )

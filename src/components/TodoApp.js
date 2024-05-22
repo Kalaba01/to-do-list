@@ -94,6 +94,7 @@ const Todo = () => {
 
   const deleteAllTodos = () => {
     setHistory([todos]);
+    setLastDeleted(null);
     setTodos([]);
   }
 

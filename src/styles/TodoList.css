@@ -1,13 +1,12 @@
 .TodoList {
     width: 50%;
-    max-width: 450px;
+    max-width: 550px;
     border: 1.5px solid #000;
     padding: 15px;
     margin: 1.5vh 0 0 0;
     border-radius: 5px;
     background-color: #4d36b3;
-    height: 64%;
-    max-height: 80%;
+    height: 60%;
     overflow-y: auto;
 }
 

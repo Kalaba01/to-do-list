@@ -41,15 +41,3 @@
         gap: 10px;
     }
 }
-
-@media screen and (max-width: 650px) {
-    .TodoCard div{
-        gap: 5px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .TodoCard div{
-        gap: 2px;
-    }
-}

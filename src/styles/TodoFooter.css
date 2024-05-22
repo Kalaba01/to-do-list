@@ -1,8 +1,9 @@
 .TodoFooter {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     padding: 10px 0px;
+    margin-top: 5%;
     border-top: 1px solid #fff;
     text-align: center;
 }

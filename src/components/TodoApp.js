@@ -13,6 +13,9 @@ const Todo = () => {
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
 
+  const [history, setHistory] = useState([]);
+  const [lastDeleted, setLastDeleted] = useState(null);
+
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
@@ -53,8 +56,30 @@ const Todo = () => {
   }
 
   const deleteTodo = id => {
-    setTodos(todos.filter(todo => todo.id !== id))
+    const todoToDelete = todos.find(todo => todo.id === id);
+    const indexToDelete = todos.findIndex(todo => todo.id === id);
+    setLastDeleted({ todo: todoToDelete, index: indexToDelete });
+    setTodos(todos.filter(todo => todo.id !== id));
   }
+
+  useEffect(() => {
+    const undoDelete = (e) => {
+      if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
+        if (lastDeleted) {
+          setTodos([...todos.slice(0, lastDeleted.index), lastDeleted.todo, ...todos.slice(lastDeleted.index)]);
+          setLastDeleted(null);
+        } else if (history.length > 0) {
+          setTodos(history[history.length - 1]);
+          setHistory(history.slice(0, -1));
+        }
+      }
+    };
+
+    document.addEventListener('keydown', undoDelete);
+    return () => {
+      document.removeEventListener('keydown', undoDelete);
+    };
+  }, [history, lastDeleted, todos]);
 
   const shareTodos = () => {
     if (todos.length > 0) {
@@ -68,6 +93,7 @@ const Todo = () => {
   }
 
   const deleteAllTodos = () => {
+    setHistory([todos]);
     setTodos([]);
   }
 

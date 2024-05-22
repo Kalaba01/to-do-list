@@ -14,7 +14,7 @@ const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgra
       </div>
       {todos.map((todo, index) => (
         todo.isEditing ? (
-          <TodoEdit upgradeTodo={upgradeTodo} todo={todo} />
+          <TodoEdit upgradeTodo={upgradeTodo} todo={todo} key={index} />
         ) : (
           <TodoCard task={todo} key={index} deleteTodo={deleteTodo} readTask={readTask} editTodo={editTodo} completeTodo={completeTodo} />  
         )

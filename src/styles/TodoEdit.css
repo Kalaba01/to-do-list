@@ -1,24 +1,26 @@
-.TodoForm {
+.TodoEdit {
     position: relative;
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 1.5vh auto;
 }
 
-.todo-input {
+.todo-edit {
     width: 75%;
     padding: 10px 40px 10px 10px;
-    border: 1.5px solid #ccc;
+    border: 1.5px solid #000;
     border-radius: 10px;
     font-size: 15px;
+    background-image: linear-gradient(to left, #b6fbff, #83a4d4);
+    color: #000;
 }
 
-.todo-input::placeholder{
+.todo-edit::placeholder{
     padding-left: 0.5vw;
     font-style: italic;
 }
 
-.todo-btn {
+.todo-btn-edit {
     position: absolute;
     right: 30px;
     top: 25%;
@@ -30,4 +32,3 @@
     font-size: 20px;
     color: #000;
 }
-

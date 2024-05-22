@@ -5,7 +5,7 @@ import "../styles/TodoList.css"
 import TodoCard from './TodoCard';
 import TodoEdit from './TodoEdit';
 
-const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo }) => {
+const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo, completeTodo }) => {
   return (
     <div className={`TodoList ${todos.length === 0 ? 'hidden' : ''}`}>
       <div className="icons">
@@ -16,7 +16,7 @@ const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgra
         todo.isEditing ? (
           <TodoEdit upgradeTodo={upgradeTodo} todo={todo} />
         ) : (
-          <TodoCard task={todo} key={index} deleteTodo={deleteTodo} readTask={readTask} editTodo={editTodo} />  
+          <TodoCard task={todo} key={index} deleteTodo={deleteTodo} readTask={readTask} editTodo={editTodo} completeTodo={completeTodo} />  
         )
       ))}
     </div>

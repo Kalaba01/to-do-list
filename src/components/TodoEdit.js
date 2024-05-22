@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../styles/TodoForm.css"
+import "../styles/TodoEdit.css"
 import { BiTask } from "react-icons/bi";
 
 const TodoEdit = ({ upgradeTodo, todo }) => {
@@ -14,9 +14,9 @@ const TodoEdit = ({ upgradeTodo, todo }) => {
   }
 
   return (
-    <form className='TodoForm' onSubmit={submitTodo}>
-      <input type='text' className='todo-input' placeholder='I need to...' value={input} onChange={(e) => setInput(e.target.value)} required />
-      <button type="submit" className='todo-btn'><BiTask size={22} /></button>
+    <form className='TodoEdit' onSubmit={submitTodo}>
+      <input type='text' className='todo-edit' placeholder='Update todo' value={input} onChange={(e) => setInput(e.target.value)} required />
+      <button type="submit" className='todo-btn-edit'><BiTask size={22} /></button>
     </form>
   )
 }

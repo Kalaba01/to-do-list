@@ -21,6 +21,12 @@ const Todo = () => {
     setTodos([...todos, { id: uuidv4(), task: todo, completed: false, isEditing: false }])
   }
 
+  const completeTodo = id => {
+    setTodos(todos.map(todo => todo.id === id ? {
+      ...todo, completed: !todo.completed
+    } : todo))
+  }
+
   const editTodo = id => {
     setTodos(todos.map(todo => todo.id === id ? {
         ...todo, isEditing: !todo.isEditing
@@ -50,7 +56,7 @@ const Todo = () => {
     <div className='TodoApp'>
       <h1>Get Things Done!</h1>
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} deleteAllTodos={deleteAllTodos} readTask={readTask} editTodo={editTodo} upgradeTodo={upgradeTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} deleteAllTodos={deleteAllTodos} readTask={readTask} editTodo={editTodo} upgradeTodo={upgradeTodo} completeTodo={completeTodo} />
       <TodoFooter />
     </div>
   )

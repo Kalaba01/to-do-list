@@ -6,3 +6,9 @@
     text-align: center;
     color: white;
 }
+
+@media screen and (max-width: 800px) {
+    .TodoApp h1{
+        font-size: x-large;
+    }
+}

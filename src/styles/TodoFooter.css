@@ -9,10 +9,32 @@
     font-size: x-large;
 }
 
-.TodoFooter img{
+.TodoFooter img {
     width: 24px;
     height: 24px;
     margin: 0px 0px -5px 7px;
     border-radius: 50px;
     object-fit: cover;
+}
+
+@media screen and (max-width: 800px) {
+    .TodoFooter {
+        font-size: large;
+    }
+
+    .TodoFooter img {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .TodoFooter {
+        font-size: medium;
+    }
+
+    .TodoFooter img {
+        width: 20px;
+        height: 20px;
+    }
 }

@@ -6,6 +6,7 @@
     border-radius: 5px;
     background-color: #4d36b3;
     overflow-y: auto;
+    min-height: fit-content;
     max-height: 57vh;
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;

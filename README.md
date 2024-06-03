@@ -34,6 +34,19 @@ The project is organized as follows:
 └── README.md               # Project documentation
 ```
 
+## Pre-required installation
+
+1) Node(20.12.2) - https://nodejs.org/en/download/package-manager/current
+
+## Libraries and Third-Party Plugins
+
+The following libraries and npm packages are used in this project:
+
+1) react(18.3.1) -  For making frontend
+2) uuid(9.0.1) - For generating unique IDs for tasks
+3) react-icons(5.2.1) - For using icons in the application
+4) react-speech-kit - For reading tasks aloud
+
 ## How to Start the Application
 
 1) Clone the repository
@@ -63,11 +76,3 @@ This will start the development server and open the application in your default 
 6) Share Task List - Users can share their task list via email.
 7) Read Tasks Aloud - Users can use text-to-speech functionality to read tasks aloud.
 8) Undo Deletions - Users can undo task deletions using CTRL+Z, restoring either a single deleted task or all tasks if they were all deleted at once.
-
-## Libraries and Third-Party Plugins
-
-The following libraries and npm packages are used in this project:
-
-1) uuid - For generating unique IDs for tasks
-2) react-icons - For using icons in the application
-3) react-speech-kit - For reading tasks aloud

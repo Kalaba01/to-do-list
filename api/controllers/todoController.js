@@ -21,6 +21,7 @@ exports.createTodo = async (req, res) => {
       userId,
       completed: false,
       isEditing: false,
+      isFavorite: false
     });
     const todo = await newTodo.save();
     res.json(todo);

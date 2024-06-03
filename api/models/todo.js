@@ -15,6 +15,10 @@ const TodoSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isEditing: {
+    type: Boolean,
+    default: false
+  },
   category: {
     type: String,
     enum: ['personal', 'business'],

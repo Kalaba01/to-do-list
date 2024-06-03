@@ -1,83 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { TodoForm, TodoList, TodoFooter } from "../index";
 import { v4 as uuidv4 } from "uuid";
+import axios from 'axios';
+
 import "./TodoApp.css";
 
-uuidv4();
-
 const TodoApp = () => {
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem('todos');
-    return savedTodos ? JSON.parse(savedTodos) : [];
+  const [todos, setTodos] = useState([]);
+  const [userId, setUserId] = useState(() => {
+    let id = localStorage.getItem('userId');
+    if (!id) {
+      id = uuidv4();
+      localStorage.setItem('userId', id);
+    }
+    return id;
   });
 
-  const [history, setHistory] = useState([]);
-  const [lastDeleted, setLastDeleted] = useState(null);
-
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-
-  useEffect(() => {
-    const storageChange = () => {
-      const savedTodos = localStorage.getItem('todos');
-      setTodos(savedTodos ? JSON.parse(savedTodos) : []);
-    };
-
-    window.addEventListener('storage', storageChange);
-
-    return () => {
-      window.removeEventListener('storage', storageChange);
-    };
-  }, []);
-
-  const addTodo = todo => {
-    setTodos([...todos, { id: uuidv4(), task: todo, completed: false, isEditing: false }])
-  }
-
-  const completeTodo = id => {
-    setTodos(todos.map(todo => todo.id === id ? {
-      ...todo, completed: !todo.completed
-    } : todo))
-  }
-
-  const editTodo = id => {
-    setTodos(todos.map(todo => todo.id === id ? {
-      ...todo, isEditing: !todo.isEditing
-    } : todo))
-  }
-
-  const upgradeTodo = (task, id) => {
-    setTodos(todos.map(todo => todo.id === id ? {
-      ...todo, task, isEditing: !todo.isEditing
-    } : todo))
-  }
-
-  const deleteTodo = id => {
-    const todoToDelete = todos.find(todo => todo.id === id);
-    const indexToDelete = todos.findIndex(todo => todo.id === id);
-    setLastDeleted({ todo: todoToDelete, index: indexToDelete });
-    setTodos(todos.filter(todo => todo.id !== id));
-  }
-
-  useEffect(() => {
-    const undoDelete = (e) => {
-      if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
-        if (lastDeleted) {
-          setTodos([...todos.slice(0, lastDeleted.index), lastDeleted.todo, ...todos.slice(lastDeleted.index)]);
-          setLastDeleted(null);
-        } else if (history.length > 0) {
-          setTodos(history[history.length - 1]);
-          setHistory(history.slice(0, -1));
-        }
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/${userId}`);
+        setTodos(response.data);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
       }
     };
 
-    document.addEventListener('keydown', undoDelete);
-    return () => {
-      document.removeEventListener('keydown', undoDelete);
-    };
-  }, [history, lastDeleted, todos]);
+    fetchTodos();
+  }, [userId]);
+
+  const addTodo = async (task) => {
+    try {
+      const response = await axios.post('http://localhost:5000/', { task, userId });
+      setTodos([...todos, response.data]);
+    } catch (error) {
+      console.error('Error adding todo:', error);
+    }
+  };
+
+  const completeTodo = async (id) => {
+    const todoToUpdate = todos.find(todo => todo.id === id);
+    try {
+      const response = await axios.put(`http://localhost:5000/${id}`, { completed: !todoToUpdate.completed });
+      setTodos(todos.map(todo => todo.id === id ? response.data : todo));
+    } catch (error) {
+      console.error('Error completing todo:', error);
+    }
+  };
+
+  const editTodo = async (id) => {
+    const todoToUpdate = todos.find(todo => todo.id === id);
+    try {
+      const response = await axios.put(`http://localhost:5000/${id}`, { isEditing: !todoToUpdate.isEditing });
+      setTodos(todos.map(todo => todo.id === id ? response.data : todo)); 
+    } catch (error) {
+      console.error('Error editing todo:', error);
+    }
+  };
+
+  const upgradeTodo = async (task, id) => {
+    try {
+      const response = await axios.put(`http://localhost:5000/${id}`, { task, isEditing: false });
+      setTodos(todos.map(todo => todo.id === id ? response.data : todo));
+    } catch (error) {
+      console.error('Error upgrading todo:', error);
+    }
+  };
+
+  const deleteTodo = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/${id}`);
+      setTodos(todos.filter(todo => todo.id !== id));
+    } catch (error) {
+      console.error('Error deleting todo:', error);
+    }
+  };
 
   const shareTodos = () => {
     if (todos.length > 0) {
@@ -90,10 +87,15 @@ const TodoApp = () => {
     }
   }
 
-  const deleteAllTodos = () => {
-    setHistory([todos]);
-    setLastDeleted(null);
-    setTodos([]);
+  const deleteAllTodos = async () => {
+    try {
+      for (const todo of todos) {
+        await axios.delete(`http://localhost:5000/${todo.id}`);
+      }
+      setTodos([]);
+    } catch (error) {
+      console.error('Error deleting all todos:', error);
+    }
   }
 
   const readTask = (task) => {

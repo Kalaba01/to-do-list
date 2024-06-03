@@ -5,6 +5,7 @@ exports.getTodos = async (req, res) => {
     const todos = await Todo.find({ userId: req.params.userId });
     res.json(todos);
   } catch (err) {
+    console.error(err);
     res.status(500).send('Server Error');
   }
 };
@@ -20,6 +21,7 @@ exports.createTodo = async (req, res) => {
     const todo = await newTodo.save();
     res.json(todo);
   } catch (err) {
+    console.error(err);
     res.status(500).send('Server Error');
   }
 };
@@ -36,6 +38,7 @@ exports.updateTodo = async (req, res) => {
     await todo.save();
     res.json(todo);
   } catch (err) {
+    console.error(err);
     res.status(500).send('Server Error');
   }
 };
@@ -49,6 +52,7 @@ exports.deleteTodo = async (req, res) => {
     await todo.remove();
     res.json({ msg: 'Todo removed' });
   } catch (err) {
+    console.error(err);
     res.status(500).send('Server Error');
   }
 };

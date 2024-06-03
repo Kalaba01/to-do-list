@@ -10,6 +10,9 @@
     max-height: 57vh;
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    white-space: pre-wrap;
 }
 
 .TodoList.hidden {
@@ -21,7 +24,28 @@
     justify-content: space-between;
 }
 
-.icons span {
+.icons span,
+.filter-options span {
     cursor: pointer;
     color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.filter-options select {
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    padding: 5px 10px;
+    font-size: medium;
+}
+
+@media screen and (max-width: 850px) {
+    .TodoList {
+        width: 88%;
+    }
 }

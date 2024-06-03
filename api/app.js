@@ -1,9 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const { connectToDb } = require("./config/db");
 const todoRoutes = require('./routes/todoRoutes');
 const app = express();
 
+app.use(cors());
+
 app.use(express.json({ extended: false }));
+
+app.use('/', todoRoutes);
 
 connectToDb().then(() => {
     app.listen(5000, () => {
@@ -12,7 +17,5 @@ connectToDb().then(() => {
 }).catch(err => {
     console.error('Failed to connect to the database', err);
 });
-
-app.use('/', todoRoutes);
 
 module.exports = app;

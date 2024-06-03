@@ -5,9 +5,17 @@
     margin: 0 auto 3vh auto;
 }
 
+.todo-icon {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+}
+
 .todo-input {
     width: 75%;
-    padding: 10px 40px 10px 10px;
+    padding: 15px 10px 15px 45px;
     border: 1.5px solid #ccc;
     border-radius: 10px;
     font-size: 15px;
@@ -18,22 +26,45 @@
     font-style: italic;
 }
 
-.todo-btn {
+.todo-dropdown {
     position: absolute;
     right: 30px;
-    top: 25%;
+    top: 10%;
+    border: 1.5px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.todo-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     border: none;
     background: none;
     cursor: pointer;
     padding: 0;
-    margin: 0;
-    font-size: 20px;
+    font-size: 15px;
     color: #000;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
     .todo-input{
-        padding: 8px 32px 8px 8px;
+        padding: 9px 33px 9px 9px;
         font-size: 12px;
+    }
+    .todo-input::placeholder{
+        padding-left: 4vw;
+    }
+    .todo-dropdown{
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .todo-input::placeholder{
+        padding-left: 7vw;
     }
 }

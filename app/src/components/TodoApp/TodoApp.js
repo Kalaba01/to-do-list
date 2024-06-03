@@ -29,30 +29,40 @@ const TodoApp = () => {
     fetchTodos();
   }, [userId]);
 
-  const addTodo = async (task) => {
+  const addTodo = async (task, category) => {
     try {
-      const response = await axios.post('http://localhost:5000/', { task, userId });
+      const response = await axios.post('http://localhost:5000/', { task, category, userId });
       setTodos([...todos, response.data]);
     } catch (error) {
       console.error('Error adding todo:', error);
     }
   };
 
+  const toggleFavorite  = async (id) => {
+    const todoToUpdate = todos.find(todo => todo._id === id);
+    try {
+      const response = await axios.put(`http://localhost:5000/${id}`, { isFavorite: !todoToUpdate.isFavorite });
+      setTodos(todos.map(todo => todo._id === id ? response.data : todo));
+    } catch (error) {
+      console.error('Error toggling favorite:', error);
+    }
+  };
+
   const completeTodo = async (id) => {
-    const todoToUpdate = todos.find(todo => todo.id === id);
+    const todoToUpdate = todos.find(todo => todo._id === id);
     try {
       const response = await axios.put(`http://localhost:5000/${id}`, { completed: !todoToUpdate.completed });
-      setTodos(todos.map(todo => todo.id === id ? response.data : todo));
+      setTodos(todos.map(todo => todo._id === id ? response.data : todo));
     } catch (error) {
       console.error('Error completing todo:', error);
     }
   };
 
   const editTodo = async (id) => {
-    const todoToUpdate = todos.find(todo => todo.id === id);
+    const todoToUpdate = todos.find(todo => todo._id === id);
     try {
       const response = await axios.put(`http://localhost:5000/${id}`, { isEditing: !todoToUpdate.isEditing });
-      setTodos(todos.map(todo => todo.id === id ? response.data : todo)); 
+      setTodos(todos.map(todo => todo._id === id ? response.data : todo)); 
     } catch (error) {
       console.error('Error editing todo:', error);
     }
@@ -61,7 +71,7 @@ const TodoApp = () => {
   const upgradeTodo = async (task, id) => {
     try {
       const response = await axios.put(`http://localhost:5000/${id}`, { task, isEditing: false });
-      setTodos(todos.map(todo => todo.id === id ? response.data : todo));
+      setTodos(todos.map(todo => todo._id === id ? response.data : todo));
     } catch (error) {
       console.error('Error upgrading todo:', error);
     }
@@ -70,7 +80,7 @@ const TodoApp = () => {
   const deleteTodo = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/${id}`);
-      setTodos(todos.filter(todo => todo.id !== id));
+      setTodos(todos.filter(todo => todo._id !== id));
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
@@ -90,7 +100,7 @@ const TodoApp = () => {
   const deleteAllTodos = async () => {
     try {
       for (const todo of todos) {
-        await axios.delete(`http://localhost:5000/${todo.id}`);
+        await axios.delete(`http://localhost:5000/${todo._id}`);
       }
       setTodos([]);
     } catch (error) {
@@ -107,7 +117,17 @@ const TodoApp = () => {
     <div className='TodoApp'>
       <h1>Get Things Done!</h1>
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} deleteAllTodos={deleteAllTodos} readTask={readTask} editTodo={editTodo} upgradeTodo={upgradeTodo} completeTodo={completeTodo} shareTodos={shareTodos} />
+      <TodoList 
+      todos={todos} 
+      deleteTodo={deleteTodo} 
+      deleteAllTodos={deleteAllTodos} 
+      readTask={readTask} 
+      editTodo={editTodo} 
+      upgradeTodo={upgradeTodo} 
+      completeTodo={completeTodo} 
+      shareTodos={shareTodos} 
+      toggleFavorite={toggleFavorite}
+      />
       <TodoFooter />
     </div>
   )

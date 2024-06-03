@@ -8,12 +8,12 @@ const TodoEdit = ({ upgradeTodo, todo }) => {
 
   useEffect(() => {
     inputRef.current.focus();
-  });
+  }, []);
 
   const submitTodo = e => {
     e.preventDefault();
 
-    upgradeTodo(input, todo.id)
+    upgradeTodo(input, todo._id);
 
     setInput("");
   }

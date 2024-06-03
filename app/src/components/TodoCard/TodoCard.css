@@ -10,11 +10,11 @@
     width: 85%;
 }
 
-.TodoCard.incomplited{
+.TodoCard.incompleted {
     background-image: linear-gradient(to left, #b6fbff, #598edf);
 }
 
-.TodoCard.completed{
+.TodoCard.completed {
     text-decoration: line-through;
     background-color: #467ac9;
 }
@@ -25,7 +25,7 @@
     word-break: break-word;
 }
 
-.TodoCard p:hover{
+.TodoCard p:hover {
     cursor: pointer;
 }
 
@@ -35,10 +35,11 @@
 }
 
 @media screen and (max-width: 850px) {
-    .TodoCard{
+    .TodoCard {
         padding: 5px;
+        width: 90%;
     }
-    .TodoCard div{
+    .TodoCard div {
         gap: 12px;
     }
 }

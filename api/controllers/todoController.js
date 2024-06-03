@@ -5,23 +5,26 @@ exports.getTodos = async (req, res) => {
     const todos = await Todo.find({ userId: req.params.userId });
     res.json(todos);
   } catch (err) {
-    console.error(err);
     res.status(500).send('Server Error');
   }
 };
 
 exports.createTodo = async (req, res) => {
   try {
+    const { task, category, userId } = req.body;
+    if (!task || !category || !userId) {
+      return res.status(400).json({ msg: 'Please provide task, category, and userId' });
+    }
     const newTodo = new Todo({
-      task: req.body.task,
-      userId: req.body.userId,
+      task,
+      category,
+      userId,
       completed: false,
       isEditing: false,
     });
     const todo = await newTodo.save();
     res.json(todo);
   } catch (err) {
-    console.error(err);
     res.status(500).send('Server Error');
   }
 };
@@ -32,27 +35,26 @@ exports.updateTodo = async (req, res) => {
     if (!todo) {
       return res.status(404).json({ msg: 'Todo not found' });
     }
-    todo.task = req.body.task || todo.task;
-    todo.completed = req.body.completed !== undefined ? req.body.completed : todo.completed;
-    todo.isEditing = req.body.isEditing !== undefined ? req.body.isEditing : todo.isEditing;
+    const { task, completed, isEditing, isFavorite } = req.body;
+    todo.task = task || todo.task;
+    todo.completed = completed !== undefined ? completed : todo.completed;
+    todo.isEditing = isEditing !== undefined ? isEditing : todo.isEditing;
+    todo.isFavorite = isFavorite !== undefined ? isFavorite : todo.isFavorite;
     await todo.save();
     res.json(todo);
   } catch (err) {
-    console.error(err);
     res.status(500).send('Server Error');
   }
 };
 
 exports.deleteTodo = async (req, res) => {
   try {
-    const todo = await Todo.findById(req.params.id);
-    if (!todo) {
+    const result = await Todo.deleteOne({ _id: req.params.id });
+    if (result.deletedCount === 0) {
       return res.status(404).json({ msg: 'Todo not found' });
     }
-    await todo.remove();
     res.json({ msg: 'Todo removed' });
   } catch (err) {
-    console.error(err);
     res.status(500).send('Server Error');
   }
 };

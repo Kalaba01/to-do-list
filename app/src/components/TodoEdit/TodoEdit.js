@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import "../styles/TodoEdit.css"
+import "./TodoEdit.css";
 import { BiTask } from "react-icons/bi";
 
 const TodoEdit = ({ upgradeTodo, todo }) => {

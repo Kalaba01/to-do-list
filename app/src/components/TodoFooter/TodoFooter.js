@@ -1,5 +1,5 @@
-import React from 'react'
-import "../styles/TodoFooter.css"
+import React from 'react';
+import "./TodoFooter.css";
 
 const TodoFooter = () => {
   return (

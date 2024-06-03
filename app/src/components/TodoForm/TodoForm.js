@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import "../styles/TodoForm.css"
 import { MdAssignmentAdd } from "react-icons/md";
+import "./TodoForm.css";
 
 const TodoForm = ({ addTodo }) => {
   const [input, setInput] = useState("");

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import "../styles/TodoApp.css";
-import TodoForm from "./TodoForm";
-import TodoList from "./TodoList";
-import TodoFooter from "./TodoFooter";
+import React, { useState, useEffect } from 'react';
+import { TodoForm, TodoList, TodoFooter } from "../index";
 import { v4 as uuidv4 } from "uuid";
+import "./TodoApp.css";
 
 uuidv4();
 
-const Todo = () => {
+const TodoApp = () => {
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem('todos');
     return savedTodos ? JSON.parse(savedTodos) : [];
@@ -113,4 +111,4 @@ const Todo = () => {
   )
 }
 
-export default Todo;
+export default TodoApp;

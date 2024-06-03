@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { TodoCard, TodoEdit } from "../index";
 import { FaShare } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import "../styles/TodoList.css"
-import TodoCard from './TodoCard';
-import TodoEdit from './TodoEdit';
+import "./TodoList.css";
 
 const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo, completeTodo, shareTodos }) => {
   return (

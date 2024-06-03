@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { MdEdit, MdDelete } from "react-icons/md";
 import { HiMiniSpeakerWave } from "react-icons/hi2";
-import "../styles/TodoCard.css";
+import "./TodoCard.css";
 
 const TodoCard = ({ task, deleteTodo, readTask, editTodo, completeTodo }) => {
   return (

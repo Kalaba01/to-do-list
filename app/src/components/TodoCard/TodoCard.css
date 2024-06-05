@@ -2,35 +2,50 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
-    border: 1.5px solid #000;
-    border-radius: 4px;
-    margin: 7px auto;
-    color: #000;
-    width: 85%;
+    padding: 10px;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    margin: 10px auto;
+    color: #fff;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .TodoCard.incompleted {
-    background-image: linear-gradient(to left, #b6fbff, #598edf);
+    background-image: linear-gradient(to left, #7f7fd5, #86a8e7, #91eae4);
 }
 
 .TodoCard.completed {
     text-decoration: line-through;
-    background-color: #467ac9;
+    background-image: linear-gradient(to left, #43cea2, #185a9d);
 }
 
-.icon:hover{
+.TodoCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    color: #fff;
+}
+
+.icon:hover {
     cursor: pointer;
+    color: #ffd700;
 }
 
 .TodoCard p {
     margin: 0;
     flex: 1;
     word-break: break-word;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .TodoCard p:hover {
-    cursor: pointer;
+    color: #ffd700;
 }
 
 .TodoCard div {
@@ -40,10 +55,20 @@
 
 @media screen and (max-width: 850px) {
     .TodoCard {
-        padding: 5px;
-        width: 90%;
+        padding: 8px;
+        width: 95%;
     }
     .TodoCard div {
-        gap: 12px;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .TodoCard {
+        padding: 5px;
+        width: 95%;
+    }
+    .TodoCard div {
+        gap: 7px;
     }
 }

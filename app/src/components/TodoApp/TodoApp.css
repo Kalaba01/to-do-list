@@ -8,7 +8,13 @@
 }
 
 @media screen and (max-width: 800px) {
-    .TodoApp h1{
+    .TodoApp h1 {
         font-size: x-large;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .TodoApp {
+        color: #e0e0e0;
     }
 }

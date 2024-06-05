@@ -13,6 +13,10 @@
     color: #000;
 }
 
+.todo-icon{
+    cursor: pointer;
+}
+
 .todo-input {
     width: 75%;
     padding: 15px 10px 15px 45px;
@@ -21,7 +25,7 @@
     font-size: 15px;
 }
 
-.todo-input::placeholder{
+.todo-input::placeholder {
     padding-left: 0.5vw;
     font-style: italic;
 }
@@ -34,6 +38,15 @@
     border-radius: 10px;
     padding: 10px;
     font-size: 15px;
+}
+
+.todo-dropdown option {
+    background-color: #2c3e50;
+}
+
+.todo-dropdown:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
 }
 
 .todo-btn {
@@ -50,21 +63,47 @@
 }
 
 @media screen and (max-width: 850px) {
-    .todo-input{
+    .todo-input {
         padding: 9px 33px 9px 9px;
         font-size: 12px;
     }
-    .todo-input::placeholder{
+    .todo-input::placeholder {
         padding-left: 4vw;
     }
-    .todo-dropdown{
+    .todo-dropdown {
         font-size: 12px;
         padding: 5px;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .todo-input::placeholder{
+    .todo-input::placeholder {
         padding-left: 7vw;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .todo-icon {
+        color: #e0e0e0;
+    }
+
+    .todo-input {
+        border: 1.5px solid #fff;
+        background-color: #222;
+        color: #e0e0e0;
+    }
+
+    .todo-input::placeholder {
+        color: #fff;
+    }
+
+    .todo-dropdown {
+        border: 1.5px solid #fff;
+        background-color: #222;
+        color: #e0e0e0;
+    }
+
+    .todo-btn {
+        color: #e0e0e0;
     }
 }

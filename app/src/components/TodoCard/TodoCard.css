@@ -72,3 +72,32 @@
         gap: 7px;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    .TodoCard {
+        border: 1.5px solid #fff;
+        color: #e0e0e0;
+        background-color: #333;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .TodoCard.incompleted {
+        background-image: linear-gradient(to left, #565656, #434343);
+    }
+
+    .TodoCard.completed {
+        background-image: linear-gradient(to left, #3b3b3b, #2a2a2a);
+    }
+
+    .icon {
+        color: #e0e0e0;
+    }
+
+    .icon:hover {
+        color: #ffcc00;
+    }
+
+    .TodoCard p:hover {
+        color: #ffcc00;
+    }
+}

@@ -19,6 +19,10 @@
     background-color: #467ac9;
 }
 
+.icon:hover{
+    cursor: pointer;
+}
+
 .TodoCard p {
     margin: 0;
     flex: 1;

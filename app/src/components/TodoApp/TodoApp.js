@@ -90,7 +90,7 @@ const TodoApp = () => {
     if (todos.length > 0) {
       let emailBody = "This is my todo list:\n\n";
       for (let i = 0; i < todos.length; i++) {
-        emailBody += `${i + 1}) ${todos[i].task}\n`;
+        emailBody += `${i + 1}) ${todos[i].task} Category: ${todos[i].category} Status: ${todos[i].completed ? "completed" : "incompleted"}\n`;
       }
       const mailtoLink = `mailto:?subject=My Todo List&body=${encodeURIComponent(emailBody)}`;
       window.location.href = mailtoLink;

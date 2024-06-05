@@ -41,12 +41,6 @@
 
 @media (prefers-color-scheme: dark) {
     .TodoFooter {
-        border-top: 1px solid #fff;
-        color: #cccccc;
-        background-color: #222;
-    }
-
-    .TodoFooter img {
-        border: 1px solid #666;
+        background-color: #141c24;
     }
 }

@@ -36,7 +36,7 @@
 @media (prefers-color-scheme: dark) {
     .todo-edit {
         border: 1.5px solid #555;
-        background-image: linear-gradient(to left, #444, #555);
+        background-image: linear-gradient(to left, #496566, #3f4f66);
         color: #f5f5f5;
     }
 

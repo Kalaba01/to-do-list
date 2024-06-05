@@ -13,6 +13,6 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-image: linear-gradient(to left, #1a1a1a, #333333b2);
+    background-image: linear-gradient(to left, #1b2530, #1f4247);
   }
 }

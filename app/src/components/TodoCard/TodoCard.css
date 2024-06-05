@@ -82,11 +82,11 @@
     }
 
     .TodoCard.incompleted {
-        background-image: linear-gradient(to left, #565656, #434343);
+        background-image: linear-gradient(to left, #41416e, #425474, #46726f);
     }
 
     .TodoCard.completed {
-        background-image: linear-gradient(to left, #3b3b3b, #2a2a2a);
+        background-image: linear-gradient(to left, #1a4e3e, #0c2b4b);
     }
 
     .icon {

@@ -12,9 +12,3 @@
         font-size: x-large;
     }
 }
-
-@media (prefers-color-scheme: dark) {
-    .TodoApp {
-        color: #e0e0e0;
-    }
-}

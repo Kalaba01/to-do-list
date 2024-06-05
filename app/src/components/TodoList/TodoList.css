@@ -74,31 +74,7 @@
 
 @media (prefers-color-scheme: dark) {
     .TodoList {
-        border: 1.5px solid #fff;
-        background-color: #1a1a1a;
-        scrollbar-color: #555 #222;
-        box-shadow: 0 0px 8px rgba(255, 255, 255, 0.7);
-    }
-
-    .icons span,
-    .filter-options span {
-        color: #e0e0e0;
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .icons span:hover,
-    .filter-options span:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .filter-options select {
-        border: 1.5px solid #fff;
-        color: #e0e0e0;
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .filter-options select:hover {
-        background-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0px 10px rgba(255, 255, 255, 0.356);
     }
 }
 

@@ -1,4 +1,7 @@
 # Todo App
+<p align="center">
+  <img src="https://github.com/Kalaba01/to-do-list/assets/130281220/d44d05bb-ab28-4f5b-a447-ea8bef2d295a" alt="Website preview"/>
+</p>
 
 This project is a full-stack Todo application built using MERN stack. Users can add, edit, delete, and mark tasks as completed. Additional features include categorizing tasks, marking tasks as favorites, and filtering tasks based on category, completion status, and favorite status. The application also supports sharing the task list via email, reading tasks aloud using text-to-speech, and adapting its appearance based on the browser's light or dark mode settings. Furthermore, the application supports multi-language functionality, displaying text in the browser's default language.
 

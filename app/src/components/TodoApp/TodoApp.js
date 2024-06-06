@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { TodoForm, TodoList, TodoFooter } from "../index";
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from 'react-i18next'
+import i18next from 'i18next';
 import axios from 'axios';
 
 import "./TodoApp.css";
 
 const TodoApp = () => {
+  const { t } = useTranslation("global");
+
   const [todos, setTodos] = useState([]);
   const [userId, setUserId] = useState(() => {
     let id = localStorage.getItem('userId');
@@ -15,6 +19,10 @@ const TodoApp = () => {
     }
     return id;
   });
+
+  useEffect(() => {
+    i18next.changeLanguage(navigator.language || navigator.userLanguage);
+  }, []);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -88,14 +96,19 @@ const TodoApp = () => {
 
   const shareTodos = () => {
     if (todos.length > 0) {
-      let emailBody = "This is my todo list:\n\n";
+      const mailBluePrint1 = t("todoList.mailBluePrint1");
+      const mailBluePrint2 = t("todoList.mailBluePrint2");
+      const mailBluePrint3 = t("todoList.mailBluePrint3");
+      const mailBluePrint4 = t("todoList.mailBluePrint4");
+
+      let emailBody = `${mailBluePrint1}\n\n`;
       for (let i = 0; i < todos.length; i++) {
-        emailBody += `${i + 1}) ${todos[i].task} Category: ${todos[i].category} Status: ${todos[i].completed ? "completed" : "incompleted"}\n`;
+        emailBody += `${mailBluePrint2} ${i + 1}) ${todos[i].task} ${mailBluePrint3} ${todos[i].category} ${mailBluePrint4} ${todos[i].completed ? t("completed") : t("incompleted")}\n`;
       }
       const mailtoLink = `mailto:?subject=My Todo List&body=${encodeURIComponent(emailBody)}`;
       window.location.href = mailtoLink;
     }
-  }
+  };
 
   const deleteAllTodos = async () => {
     try {
@@ -115,8 +128,8 @@ const TodoApp = () => {
 
   return (
     <div className='TodoApp'>
-      <h1>Get Things Done!</h1>
-      <TodoForm addTodo={addTodo} />
+      <h1>{t("todoApp.header")}</h1>
+      <TodoForm addTodo={addTodo} t={t} />
       <TodoList 
       todos={todos} 
       deleteTodo={deleteTodo} 
@@ -127,8 +140,9 @@ const TodoApp = () => {
       completeTodo={completeTodo} 
       shareTodos={shareTodos} 
       toggleFavorite={toggleFavorite}
+      t={t}
       />
-      <TodoFooter />
+      <TodoFooter t={t} />
     </div>
   )
 }

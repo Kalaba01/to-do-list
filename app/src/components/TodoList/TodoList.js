@@ -1,13 +1,10 @@
-// TodoList.js
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TodoCard, TodoEdit } from "../index";
-import { FaShare } from "react-icons/fa";
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import "./TodoList.css";
 
-const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo, completeTodo, shareTodos, toggleFavorite }) => {
+const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo, completeTodo, shareTodos, toggleFavorite, t }) => {
   const [filter, setFilter] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
@@ -42,17 +39,17 @@ const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgra
         <span><MdDelete size={20} onClick={()=>deleteAllTodos()} /></span>
       </div>
       <div className="filter-options">
-        <span onClick={() => setFilter('all')}>All</span>
-        <span onClick={() => setFilter('favorites')}>Favorites</span>
+        <span onClick={() => setFilter('all')}>{t("todoList.clasicFilter1")}</span>
+        <span onClick={() => setFilter('favorites')}>{t("todoList.clasicFilter2")}</span>
         <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-          <option value="">Category</option>
-          <option value="personal">Personal</option>
-          <option value="business">Business</option>
+          <option value="">{t("todoList.dropdownFilter1Option1")}</option>
+          <option value="personal">{t("todoList.dropdownFilter1Option2")}</option>
+          <option value="business">{t("todoList.dropdownFilter1Option3")}</option>
         </select>
         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
-          <option value="">Status</option>
-          <option value="completed">Completed</option>
-          <option value="incomplete">Incomplete</option>
+          <option value="">{t("todoList.dropdownFilter2Option1")}</option>
+          <option value="completed">{t("todoList.dropdownFilter2Option2")}</option>
+          <option value="incomplete">{t("todoList.dropdownFilter2Option3")}</option>
         </select>
       </div>
       {filteredTodos.map((todo, index) => (

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MdAssignmentAdd } from "react-icons/md";
 import "./TodoForm.css";
 
-const TodoForm = ({ addTodo }) => {
+const TodoForm = ({ addTodo, t }) => {
   const [input, setInput] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const inputRef = useRef(null);
@@ -15,7 +15,7 @@ const TodoForm = ({ addTodo }) => {
     e.preventDefault();
   
     if (!selectedCategory) {
-      alert("Please select a category!");
+      alert(t("todoForm.noCategoryMsg"));
       return;
     }
   
@@ -27,11 +27,11 @@ const TodoForm = ({ addTodo }) => {
   return (
     <form className='TodoForm' onSubmit={submitTodo}>
       <MdAssignmentAdd size={22} className='todo-icon' onClick={submitTodo} />
-      <input ref={inputRef} type='text' className='todo-input' placeholder='I need to...' value={input} onChange={(e) => setInput(e.target.value)} required />
+      <input ref={inputRef} type='text' className='todo-input' placeholder={t("todoForm.inputPlaceholder")} value={input} onChange={(e) => setInput(e.target.value)} required />
       <select className='todo-dropdown' value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-        <option value="">Category</option>
-        <option value='personal'>Personal</option>
-        <option value='business'>Business</option>
+        <option value="">{t("todoForm.option1")}</option>
+        <option value='personal'>{t("todoForm.option2")}</option>
+        <option value='business'>{t("todoForm.option3")}</option>
       </select>
     </form>
   )

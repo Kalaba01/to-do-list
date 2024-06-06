@@ -1,0 +1,29 @@
+{
+  "todoApp": {
+    "header": "कार्य पूर्ण करें!"
+  },
+  "todoForm": {
+    "inputPlaceholder": "मुझे करना है...",
+    "option1": "श्रेणी",
+    "option2": "व्यक्तिगत",
+    "option3": "व्यवसायिक",
+    "noCategoryMsg": "कृपया एक श्रेणी चुनें!"
+  },
+  "todoList": {
+    "mailBluePrint1": "यह मेरी कार्य सूची है:",
+    "mailBluePrint2": "कार्य:",
+    "mailBluePrint3": "श्रेणी:",
+    "mailBluePrint4": "स्थिति:",
+    "clasicFilter1": "सभी",
+    "clasicFilter2": "पसंदीदा",
+    "dropdownFilter1Option1": "श्रेणी",
+    "dropdownFilter1Option2": "व्यक्तिगत",
+    "dropdownFilter1Option3": "व्यवसायिक",
+    "dropdownFilter2Option1": "स्थिति",
+    "dropdownFilter2Option2": "पूर्ण",
+    "dropdownFilter2Option3": "अपूर्ण"
+  },
+  "todoFooter": {
+    "footer": "हलक ऐप्स इंटर्न द्वारा संचालित"
+  }
+}

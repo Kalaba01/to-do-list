@@ -1,0 +1,29 @@
+{
+  "todoApp": {
+    "header": "Get Things Done!"
+  },
+  "todoForm": {
+    "inputPlaceholder": "I need to...",
+    "option1": "Category",
+    "option2": "Personal",
+    "option3": "Business",
+    "noCategoryMsg": "Please select a category!"
+  },
+  "todoList": {
+    "mailBluePrint1": "This is my todo list:",
+    "mailBluePrint2": "Task:",
+    "mailBluePrint3": "Category:",
+    "mailBluePrint4": "Status:",
+    "clasicFilter1": "All",
+    "clasicFilter2": "Favorites",
+    "dropdownFilter1Option1": "Category",
+    "dropdownFilter1Option2": "Personal",
+    "dropdownFilter1Option3": "Business",
+    "dropdownFilter2Option1": "Status",
+    "dropdownFilter2Option2": "Completed",
+    "dropdownFilter2Option3": "Incompleted"
+  },
+  "todoFooter": {
+    "footer": "Powered by Hulk Apps Intern"
+  }
+}

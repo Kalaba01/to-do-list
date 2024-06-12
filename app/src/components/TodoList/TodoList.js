@@ -4,7 +4,7 @@ import { MdOutlineAttachEmail } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import "./TodoList.css";
 
-const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgradeTodo, completeTodo, shareTodos, toggleFavorite, t }) => {
+const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTodo, editTodo, upgradeTodo, completeTodo, shareTodos, favoriteTodo, t }) => {
   const [filter, setFilter] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
@@ -25,7 +25,7 @@ const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgra
     }
     if (selectedStatus === 'completed' || selectedStatus === 'incomplete') {
       const isCompleted = selectedStatus === 'completed';
-      filteredTodos = filteredTodos.filter(todo => todo.completed === isCompleted);
+      filteredTodos = filteredTodos.filter(todo => todo.isCompleted === isCompleted);
     }
     return filteredTodos;
   };
@@ -60,10 +60,10 @@ const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTask, editTodo, upgra
             task={todo} 
             key={index} 
             deleteTodo={deleteTodo} 
-            readTask={readTask} 
+            readTodo={readTodo} 
             editTodo={editTodo} 
             completeTodo={completeTodo} 
-            toggleFavorite={toggleFavorite}
+            favoriteTodo={favoriteTodo}
           />  
         )
       ))}

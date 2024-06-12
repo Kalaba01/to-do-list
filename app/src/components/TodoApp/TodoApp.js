@@ -46,7 +46,7 @@ const TodoApp = () => {
     }
   };
 
-  const toggleFavorite  = async (id) => {
+  const favoriteTodo  = async (id) => {
     const todoToUpdate = todos.find(todo => todo._id === id);
     try {
       const response = await axios.put(`http://localhost:5000/${id}`, { isFavorite: !todoToUpdate.isFavorite });
@@ -59,7 +59,7 @@ const TodoApp = () => {
   const completeTodo = async (id) => {
     const todoToUpdate = todos.find(todo => todo._id === id);
     try {
-      const response = await axios.put(`http://localhost:5000/${id}`, { completed: !todoToUpdate.completed });
+      const response = await axios.put(`http://localhost:5000/${id}`, { isCompleted: !todoToUpdate.isCompleted });
       setTodos(todos.map(todo => todo._id === id ? response.data : todo));
     } catch (error) {
       console.error('Error completing todo:', error);
@@ -103,7 +103,7 @@ const TodoApp = () => {
 
       let emailBody = `${mailBluePrint1}\n\n`;
       for (let i = 0; i < todos.length; i++) {
-        emailBody += `${mailBluePrint2} ${i + 1}) ${todos[i].task} ${mailBluePrint3} ${todos[i].category} ${mailBluePrint4} ${todos[i].completed ? t("completed") : t("incompleted")}\n`;
+        emailBody += `${mailBluePrint2} ${i + 1}) ${todos[i].task} ${mailBluePrint3} ${todos[i].category} ${mailBluePrint4} ${todos[i].isCompleted ? t("isCompleted") : t("incompleted")}\n`;
       }
       const mailtoLink = `mailto:?subject=My Todo List&body=${encodeURIComponent(emailBody)}`;
       window.location.href = mailtoLink;
@@ -121,7 +121,7 @@ const TodoApp = () => {
     }
   }
 
-  const readTask = (task) => {
+  const readTodo = (task) => {
     const utterance = new SpeechSynthesisUtterance(task);
     window.speechSynthesis.speak(utterance);
   };
@@ -134,12 +134,12 @@ const TodoApp = () => {
       todos={todos} 
       deleteTodo={deleteTodo} 
       deleteAllTodos={deleteAllTodos} 
-      readTask={readTask} 
+      readTodo={readTodo} 
       editTodo={editTodo} 
       upgradeTodo={upgradeTodo} 
       completeTodo={completeTodo} 
       shareTodos={shareTodos} 
-      toggleFavorite={toggleFavorite}
+      favoriteTodo={favoriteTodo}
       t={t}
       />
       <TodoFooter t={t} />

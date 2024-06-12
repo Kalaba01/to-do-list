@@ -4,15 +4,15 @@ import { HiMiniSpeakerWave } from "react-icons/hi2";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import "./TodoCard.css";
 
-const TodoCard = ({ task, deleteTodo, readTask, editTodo, completeTodo, toggleFavorite }) => {
+const TodoCard = ({ task, deleteTodo, readTodo, editTodo, completeTodo, favoriteTodo }) => {
 
   return (
-    <div className={`TodoCard ${task.completed ? "completed" : "incompleted"}`}>
-      {task.isFavorite ? <FaHeart className='icon' size={20} onClick={() => toggleFavorite(task._id)} /> : <FaRegHeart  className='icon' size={20} onClick={() => toggleFavorite(task._id)} />}
+    <div className={`TodoCard ${task.isCompleted ? "completed" : "incompleted"}`}>
+      {task.isFavorite ? <FaHeart className='icon' size={20} onClick={() => favoriteTodo(task._id)} /> : <FaRegHeart  className='icon' size={20} onClick={() => favoriteTodo(task._id)} />}
       <p onClick={() => completeTodo(task._id)}>{task.task}</p>
       <div>
         <MdEdit  className='icon' size={20} onClick={() => editTodo(task._id)} />
-        <HiMiniSpeakerWave  className='icon' size={20} onClick={() => readTask(task.task)} />
+        <HiMiniSpeakerWave  className='icon' size={20} onClick={() => readTodo(task.task)} />
         <MdDelete  className='icon' size={20} onClick={() => deleteTodo(task._id)} />
       </div>
     </div>

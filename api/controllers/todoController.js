@@ -19,7 +19,7 @@ exports.createTodo = async (req, res) => {
       task,
       category,
       userId,
-      completed: false,
+      isCompleted: false,
       isEditing: false,
       isFavorite: false
     });
@@ -36,9 +36,9 @@ exports.updateTodo = async (req, res) => {
     if (!todo) {
       return res.status(404).json({ msg: 'Todo not found' });
     }
-    const { task, completed, isEditing, isFavorite } = req.body;
+    const { task, isCompleted, isEditing, isFavorite } = req.body;
     todo.task = task || todo.task;
-    todo.completed = completed !== undefined ? completed : todo.completed;
+    todo.isCompleted = isCompleted !== undefined ? isCompleted : todo.isCompleted;
     todo.isEditing = isEditing !== undefined ? isEditing : todo.isEditing;
     todo.isFavorite = isFavorite !== undefined ? isFavorite : todo.isFavorite;
     await todo.save();

@@ -40,9 +40,19 @@ const deleteTodo = async (req, res) => {
   }
 };
 
+const deleteAllTodosForUser = async (req, res) => {
+  try {
+    await todoService.deleteAllTodosForUser(req.params.userId);
+    res.json({ msg: 'All todos removed' });
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+};
+
 module.exports = {
   getTodos,
   createTodo,
   updateTodo,
-  deleteTodo
+  deleteTodo,
+  deleteAllTodosForUser
 };

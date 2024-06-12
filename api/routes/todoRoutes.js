@@ -6,5 +6,6 @@ router.get('/:userId', todoController.getTodos);
 router.post('/', todoController.createTodo);
 router.put('/:id', todoController.updateTodo);
 router.delete('/:id', todoController.deleteTodo);
+router.delete('/user/:userId', todoController.deleteAllTodosForUser);
 
 module.exports = router;

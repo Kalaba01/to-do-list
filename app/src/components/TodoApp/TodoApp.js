@@ -109,12 +109,10 @@ const TodoApp = () => {
 
   const deleteAllTodos = async () => {
     try {
-      for (const todo of todos) {
-        await axios.delete(`http://localhost:5000/${todo._id}`);
-      }
+      await axios.delete(`http://localhost:5000/user/${userId}`);
       setTodos([]);
     } catch (error) {
-      console.error("Error deleting all todos:", error);
+      console.error('Error deleting all todos:', error);
     }
   };
 

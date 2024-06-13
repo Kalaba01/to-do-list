@@ -1,29 +1,38 @@
-import React, { useState, useEffect, useRef } from 'react';
-import "./TodoEdit.css";
+import React, { useState } from 'react';
 import { BiTask } from "react-icons/bi";
+import TodoInput from '../TodoInput/TodoInput';
 
 const TodoEdit = ({ upgradeTodo, todo }) => {
   const [input, setInput] = useState(todo.task);
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+  const [selectedCategory, setSelectedCategory] = useState(todo.category);
 
   const submitTodo = e => {
     e.preventDefault();
-
-    upgradeTodo(input, todo._id);
-
+    upgradeTodo(input, selectedCategory, todo._id);
     setInput("");
   }
 
+  const dropdownOptions = {
+    "Personal": "personal",
+    "Business": "business"
+  };
+
   return (
-    <form className='TodoEdit' onSubmit={submitTodo}>
-      <input ref={inputRef} type='text' className='todo-edit' placeholder='Update todo' value={input} onChange={(e) => setInput(e.target.value)} required />
-      <button type="submit" className='todo-btn-edit'><BiTask size={22} /></button>
-    </form>
-  )
+    <TodoInput
+      input={input}
+      setInput={setInput}
+      selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+      formClass="TodoEdit"
+      inputClass="todo-edit"
+      buttonClass="todo-btn-edit"
+      buttonIcon={<BiTask size={22} className='todo-icon-edit' />}
+      placeholder='Update todo'
+      dropdownClass="todo-edit-dropdown"
+      submitTodo={submitTodo}
+      dropdownOptions={dropdownOptions}
+    />
+  );
 }
 
 export default TodoEdit;

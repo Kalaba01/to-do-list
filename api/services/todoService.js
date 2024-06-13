@@ -16,12 +16,18 @@ const createTodo = async ({ task, category, userId }) => {
   return await newTodo.save();
 };
 
-const updateTodo = async (id, data) => {
+const updateTodo = async (id, { task, category, isFavorite, isCompleted, isEditing }) => {
   const todo = await Todo.findById(id);
   if (!todo) {
     throw new Error('Todo not found');
   }
-  Object.assign(todo, data);
+
+  todo.task = task !== undefined ? task : todo.task;
+  todo.category = category !== undefined ? category : todo.category;
+  todo.isFavorite = isFavorite !== undefined ? isFavorite : todo.isFavorite;
+  todo.isCompleted = isCompleted !== undefined ? isCompleted : todo.isCompleted;
+  todo.isEditing = isEditing !== undefined ? isEditing : todo.isEditing;
+
   return await todo.save();
 };
 

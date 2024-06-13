@@ -11,11 +11,7 @@ const getTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
   try {
-    const { task, category, userId } = req.body;
-    if (!task || !category || !userId) {
-      return res.status(400).json({ status: 'error', message: 'Please provide task, category, and userId' });
-    }
-    const todo = await todoService.createTodo({ task, category, userId });
+    const todo = await todoService.createTodo(req.body);
     res.status(201).json({ status: 'success', data: todo });
   } catch (err) {
     res.status(500).json({ status: 'error', message: 'Server Error' });
@@ -24,10 +20,10 @@ const createTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
   try {
-    const todo = await todoService.updateTodo(req.params.id, req.body);
-    res.status(200).json({ status: 'success', data: todo });
+    const updatedTodo = await todoService.updateTodo(req.params.id, req.body);
+    res.status(200).json({ status: 'success', data: updatedTodo });
   } catch (err) {
-    if (err.message === 'Todo not found') {
+    if (err.kind === 'ObjectId' || err.message === 'Todo not found') {
       res.status(404).json({ status: 'error', message: 'Todo not found' });
     } else {
       res.status(500).json({ status: 'error', message: 'Server Error' });

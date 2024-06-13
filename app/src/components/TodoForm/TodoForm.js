@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MdAssignmentAdd } from "react-icons/md";
-import "./TodoForm.css";
+import TodoInput from '../TodoInput/TodoInput';
 
 const TodoForm = ({ addTodo, t }) => {
   const [input, setInput] = useState("");
@@ -8,33 +8,45 @@ const TodoForm = ({ addTodo, t }) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current.focus();
-  });
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const submitTodo = e => {
     e.preventDefault();
-  
+
     if (!selectedCategory) {
       alert(t("todoForm.noCategoryMsg"));
       return;
     }
-  
+
     addTodo(input, selectedCategory);
-  
     setInput("");
   }
 
+  const dropdownOptions = {
+    "Select Category": "",
+    "Personal": "personal",
+    "Business": "business"
+  };
+
   return (
-    <form className='TodoForm' onSubmit={submitTodo}>
-      <MdAssignmentAdd size={22} className='todo-icon' onClick={submitTodo} />
-      <input ref={inputRef} type='text' className='todo-input' placeholder={t("todoForm.inputPlaceholder")} value={input} onChange={(e) => setInput(e.target.value)} required />
-      <select className='todo-dropdown' value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-        <option value="">{t("todoForm.option1")}</option>
-        <option value='personal'>{t("todoForm.option2")}</option>
-        <option value='business'>{t("todoForm.option3")}</option>
-      </select>
-    </form>
-  )
+    <TodoInput
+      input={input}
+      setInput={setInput}
+      selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+      formClass="TodoForm"
+      inputClass="todo-input"
+      buttonClass="todo-btn"
+      buttonIcon={<MdAssignmentAdd size={22} className='todo-icon' />}
+      placeholder={t("todoForm.inputPlaceholder")}
+      dropdownClass="todo-dropdown"
+      submitTodo={submitTodo}
+      dropdownOptions={dropdownOptions}
+    />
+  );
 }
 
 export default TodoForm;

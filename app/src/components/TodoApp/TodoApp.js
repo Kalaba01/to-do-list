@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import axios from "axios";
-
 import "./TodoApp.css";
 
 const TodoApp = () => {
@@ -86,10 +85,11 @@ const TodoApp = () => {
     }
   };
 
-  const upgradeTodo = async (task, id) => {
+  const upgradeTodo = async (task, category, id) => {
     try {
       const response = await axios.put(`http://localhost:5000/${id}`, {
         task,
+        category,
         isEditing: false,
       });
       setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));

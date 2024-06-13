@@ -28,7 +28,7 @@ const TodoApp = () => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/${userId}`);
-        setTodos(response.data);
+        setTodos(response.data.data);
       } catch (error) {
         console.error("Error fetching todos:", error);
       }
@@ -44,7 +44,7 @@ const TodoApp = () => {
         category,
         userId,
       });
-      setTodos([...todos, response.data]);
+      setTodos([...todos, response.data.data]);
     } catch (error) {
       console.error("Error adding todo:", error);
     }
@@ -56,7 +56,7 @@ const TodoApp = () => {
       const response = await axios.put(`http://localhost:5000/${id}`, {
         isFavorite: !todoToUpdate.isFavorite,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data : todo)));
+      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
     } catch (error) {
       console.error("Error toggling favorite:", error);
     }
@@ -68,7 +68,7 @@ const TodoApp = () => {
       const response = await axios.put(`http://localhost:5000/${id}`, {
         isCompleted: !todoToUpdate.isCompleted,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data : todo)));
+      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
     } catch (error) {
       console.error("Error completing todo:", error);
     }
@@ -80,7 +80,7 @@ const TodoApp = () => {
       const response = await axios.put(`http://localhost:5000/${id}`, {
         isEditing: !todoToUpdate.isEditing,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data : todo)));
+      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
     } catch (error) {
       console.error("Error editing todo:", error);
     }
@@ -92,7 +92,7 @@ const TodoApp = () => {
         task,
         isEditing: false,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data : todo)));
+      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
     } catch (error) {
       console.error("Error upgrading todo:", error);
     }

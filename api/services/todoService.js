@@ -34,12 +34,12 @@ const deleteTodo = async (id) => {
 };
 
 const deleteAllTodosForUser = async (userId) => {
-    const result = await Todo.deleteMany({ userId });
-    if (result.deletedCount === 0) {
-      throw new Error('No todos found for this user');
-    }
-    return result;
-  };
+  const result = await Todo.deleteMany({ userId });
+  if (result.deletedCount === 0) {
+    throw new Error('No todos found for this user');
+  }
+  return result;
+};
 
 module.exports = {
   getTodos,

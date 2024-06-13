@@ -1,29 +1,32 @@
 {
   "todoApp": {
-    "header": "完成任务!"
+    "header": "完成任务！"
   },
   "todoForm": {
     "inputPlaceholder": "我需要...",
-    "option1": "类别",
+    "option1": "选择类别",
     "option2": "个人",
-    "option3": "商务",
-    "noCategoryMsg": "请选择一个类别!"
+    "option3": "商业",
+    "noCategoryMsg": "请选择一个类别！"
+  },
+  "todoEdit": {
+    "inputPlaceholder": "更新待办"
   },
   "todoList": {
-    "mailBluePrint1": "这是我的任务列表:",
-    "mailBluePrint2": "任务:",
-    "mailBluePrint3": "类别:",
-    "mailBluePrint4": "状态:",
+    "mailBluePrint1": "这是我的待办列表：",
+    "mailBluePrint2": "任务：",
+    "mailBluePrint3": "类别：",
+    "mailBluePrint4": "状态：",
     "clasicFilter1": "全部",
     "clasicFilter2": "收藏",
     "dropdownFilter1Option1": "类别",
     "dropdownFilter1Option2": "个人",
-    "dropdownFilter1Option3": "商务",
+    "dropdownFilter1Option3": "商业",
     "dropdownFilter2Option1": "状态",
     "dropdownFilter2Option2": "已完成",
     "dropdownFilter2Option3": "未完成"
   },
   "todoFooter": {
-    "footer": "由 Hulk Apps Intern 提供"
+    "footer": "由 Hulk Apps Intern 提供支持"
   }
 }

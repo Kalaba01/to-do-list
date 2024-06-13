@@ -4,10 +4,13 @@
   },
   "todoForm": {
     "inputPlaceholder": "I need to...",
-    "option1": "Category",
+    "option1": "Select Category",
     "option2": "Personal",
     "option3": "Business",
     "noCategoryMsg": "Please select a category!"
+  },
+  "todoEdit": {
+    "inputPlaceholder": "Update todo"
   },
   "todoList": {
     "mailBluePrint1": "This is my todo list:",

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { TodoInput } from "../index";
 import { MdAssignmentAdd } from "react-icons/md";
-import TodoInput from '../TodoInput/TodoInput';
 
 const TodoForm = ({ addTodo, t }) => {
   const [input, setInput] = useState("");
@@ -26,9 +26,9 @@ const TodoForm = ({ addTodo, t }) => {
   }
 
   const dropdownOptions = {
-    "Select Category": "",
-    "Personal": "personal",
-    "Business": "business"
+    [t("todoForm.option1")]: "",
+    [t("todoForm.option2")]: "personal",
+    [t("todoForm.option3")]: "business"
   };
 
   return (

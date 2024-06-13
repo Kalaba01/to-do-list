@@ -1,27 +1,30 @@
 {
   "todoApp": {
-    "header": "Terminez vos tâches!"
+    "header": "Réalisez vos tâches!"
   },
   "todoForm": {
     "inputPlaceholder": "Je dois...",
-    "option1": "Catégorie",
+    "option1": "Sélectionner la catégorie",
     "option2": "Personnel",
-    "option3": "Professionnel",
+    "option3": "Affaires",
     "noCategoryMsg": "Veuillez sélectionner une catégorie!"
+  },
+  "todoEdit": {
+    "inputPlaceholder": "Mettre à jour la tâche"
   },
   "todoList": {
     "mailBluePrint1": "Voici ma liste de tâches:",
     "mailBluePrint2": "Tâche:",
     "mailBluePrint3": "Catégorie:",
     "mailBluePrint4": "Statut:",
-    "clasicFilter1": "Tout",
+    "clasicFilter1": "Tous",
     "clasicFilter2": "Favoris",
     "dropdownFilter1Option1": "Catégorie",
     "dropdownFilter1Option2": "Personnel",
-    "dropdownFilter1Option3": "Professionnel",
+    "dropdownFilter1Option3": "Affaires",
     "dropdownFilter2Option1": "Statut",
-    "dropdownFilter2Option2": "Complété",
-    "dropdownFilter2Option3": "Inachevé"
+    "dropdownFilter2Option2": "Terminé",
+    "dropdownFilter2Option3": "Incomplet"
   },
   "todoFooter": {
     "footer": "Propulsé par Hulk Apps Intern"

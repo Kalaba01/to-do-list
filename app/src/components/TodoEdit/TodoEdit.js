@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { TodoInput } from "../index";
 import { BiTask } from "react-icons/bi";
-import TodoInput from '../TodoInput/TodoInput';
 
-const TodoEdit = ({ upgradeTodo, todo }) => {
+const TodoEdit = ({ upgradeTodo, todo, t }) => {
   const [input, setInput] = useState(todo.task);
   const [selectedCategory, setSelectedCategory] = useState(todo.category);
 
@@ -13,8 +13,8 @@ const TodoEdit = ({ upgradeTodo, todo }) => {
   }
 
   const dropdownOptions = {
-    "Personal": "personal",
-    "Business": "business"
+    [t("todoForm.option2")]: "personal",
+    [t("todoForm.option3")]: "business"
   };
 
   return (
@@ -27,7 +27,7 @@ const TodoEdit = ({ upgradeTodo, todo }) => {
       inputClass="todo-edit"
       buttonClass="todo-btn-edit"
       buttonIcon={<BiTask size={22} className='todo-icon-edit' />}
-      placeholder='Update todo'
+      placeholder={t("todoEdit.inputPlaceholder")}
       dropdownClass="todo-edit-dropdown"
       submitTodo={submitTodo}
       dropdownOptions={dropdownOptions}

@@ -54,7 +54,7 @@ const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTodo, editTodo, upgra
       </div>
       {filteredTodos.map((todo, index) => (
         todo.isEditing ? (
-          <TodoEdit upgradeTodo={upgradeTodo} todo={todo} key={index} />
+          <TodoEdit upgradeTodo={upgradeTodo} todo={todo} key={index} t={t} />
         ) : (
           <TodoCard 
             task={todo} 

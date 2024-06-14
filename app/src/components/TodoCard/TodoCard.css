@@ -53,13 +53,37 @@
     gap: 15px;
 }
 
+.todo-dates {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: wheat;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 3.5%;
+}
+
 @media screen and (max-width: 850px) {
     .TodoCard {
         padding: 8px;
         width: 95%;
     }
+
     .TodoCard div {
         gap: 10px;
+    }
+
+    .todo-dates{
+        padding: 0px 1.5%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .todo-dates{
+        display: flex;
+        flex-direction: column;
+    }
+    .todo-dates span{
+        padding-bottom: 7px;
     }
 }
 
@@ -68,8 +92,13 @@
         padding: 5px;
         width: 95%;
     }
+
     .TodoCard div {
         gap: 7px;
+    }
+
+    .todo-dates{
+        font-size: 0.8rem;
     }
 }
 

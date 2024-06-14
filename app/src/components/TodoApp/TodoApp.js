@@ -143,6 +143,14 @@ const TodoApp = () => {
     window.speechSynthesis.speak(utterance);
   };
 
+  const formatDateTime = (dateString) => {
+    const options = {
+      year: 'numeric', month: 'long', day: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <div className="TodoApp">
       <h1>{t("todoApp.header")}</h1>
@@ -157,6 +165,7 @@ const TodoApp = () => {
         completeTodo={completeTodo}
         shareTodos={shareTodos}
         favoriteTodo={favoriteTodo}
+        formatDateTime={formatDateTime}
         t={t}
       />
       <TodoFooter t={t} />

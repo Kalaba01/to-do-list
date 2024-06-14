@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TodoForm, TodoList, TodoFooter } from "../index";
+import { TodoForm, TodoList, TodoFooter, TodoUpload } from "../index";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
@@ -151,6 +151,24 @@ const TodoApp = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const validateAndUploadTodos = async (data, userId) => {
+    try {
+      const response = await axios.post(`http://localhost:5000/upload/${userId}`, data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      setTodos([...todos, ...response.data.data]);
+      return { success: true };
+    } catch (error) {
+      if (error.response && error.response.status === 413) {
+        return { success: false, message: "The file you tried to upload is too large." };
+      } else {
+        return { success: false, message: "Error uploading file" };
+      }
+    }
+  };
+  
   return (
     <div className="TodoApp">
       <h1>{t("todoApp.header")}</h1>
@@ -168,6 +186,7 @@ const TodoApp = () => {
         formatDateTime={formatDateTime}
         t={t}
       />
+      <TodoUpload validateAndUploadTodos={validateAndUploadTodos} userId={userId} />
       <TodoFooter t={t} />
     </div>
   );

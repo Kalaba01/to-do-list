@@ -47,10 +47,39 @@ const deleteAllTodosForUser = async (userId) => {
   return result;
 };
 
+const uploadTodos = async (todos, userId) => {
+  const validCategories = ['personal', 'business'];
+  const newTodos = [];
+
+  todos.forEach(({ task, category }) => {
+    if (!category || !validCategories.includes(category.toLowerCase())) {
+      throw new Error('Invalid data format. Check category values.');
+    }
+
+    // At first glance, a more optimized solution would be to reuse the already existing createTodo function. However, the execution of the current code requires significantly fewer operations, which can be seen when comparing the time complexity:
+    // 1) The current version effectively performs an O(1) operation for the entire dataset by using insertMany, as it inserts all todos in one go
+    // 2) The version when createTodo function is used performs O(n) operations, where n is the number of todos, due to individual save operations
+
+    newTodos.push({
+      task,
+      category,
+      userId,
+      isCompleted: false,
+      isEditing: false,
+      isFavorite: false
+    });
+  });
+
+  const savedTodos = await Todo.insertMany(newTodos);
+  return savedTodos;
+};
+
 module.exports = {
   getTodos,
   createTodo,
   updateTodo,
   deleteTodo,
-  deleteAllTodosForUser
+  deleteAllTodosForUser,
+  uploadTodos,
+  getTodosByCategory
 };

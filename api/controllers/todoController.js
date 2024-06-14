@@ -56,11 +56,29 @@ const deleteAllTodosForUser = async (req, res) => {
     }
   }
 };
+  
+const uploadTodos = async (req, res) => {
+  try {
+    const todos = req.body;
+    const userId = req.params.id;
+
+    if (!Array.isArray(todos)) {
+      return res.status(400).json({ status: 'error', message: 'Invalid data format' });
+    }
+
+    const uploadedTodos = await todoService.uploadTodos(todos, userId);
+    res.status(200).json({ status: 'success', data: uploadedTodos });
+  } catch (error) {
+    console.error('Error uploading todos:', error);
+    res.status(500).json({ status: 'error', message: 'Server Error' });
+  }
+};
 
 module.exports = {
   getTodos,
   createTodo,
   updateTodo,
   deleteTodo,
-  deleteAllTodosForUser
+  deleteAllTodosForUser,
+  uploadTodos
 };

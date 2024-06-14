@@ -4,6 +4,18 @@ const getTodos = async (userId) => {
   return await Todo.find({ userId });
 };
 
+
+// At the current project logic, this function doesn't have usage because by default the user is displayed all todos and then depending on the user interaction the todos are filtered (on frontend) by category, favorites and completion status. In case of project logic change, this function can be used to get todos of a specific category
+
+const getTodosByCategory = async (userId, category) => {
+  const validCategories = ['personal', 'business'];
+  if (!validCategories.includes(category.toLowerCase())) {
+    throw new Error('Invalid category');
+  }
+
+  return await Todo.find({ userId, category: category.toLowerCase() });
+};
+
 const createTodo = async ({ task, category, userId }) => {
   const newTodo = new Todo({
     task,

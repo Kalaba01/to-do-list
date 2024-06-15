@@ -3,7 +3,7 @@ import { FaFileUpload } from "react-icons/fa";
 import Papa from "papaparse";
 import "./TodoUpload.css";
 
-const TodoUpload = ({ validateAndUploadTodos, userId, isUploadPopupOpen, setIsUploadPopupOpen }) => {
+const TodoUpload = ({ validateAndUploadTodos, validateFile, userId, isUploadPopupOpen, setIsUploadPopupOpen }) => {
   const [validationMessage, setValidationMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
@@ -70,21 +70,6 @@ const TodoUpload = ({ validateAndUploadTodos, userId, isUploadPopupOpen, setIsUp
 
   const handleClick = () => {
     fileInputRef.current.click();
-  };
-
-  const validateFile = (data) => {
-    const validCategories = ["personal", "business"];
-    let isValid = true;
-    let message = "";
-  
-    data.forEach((row) => {
-      if (!row.task || !row.category || !validCategories.includes(row.category.toLowerCase())) {
-        isValid = false;
-        message = "Error in category column!";
-      }
-    });
-  
-    return { isValid, message };
   };
 
   const closePopup = () => {

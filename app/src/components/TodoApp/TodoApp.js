@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { TodoForm, TodoList, TodoFooter, TodoUpload, TodoWelcome } from "../index";
+import {
+  TodoForm,
+  TodoList,
+  TodoFooter,
+  TodoUpload,
+  TodoWelcome,
+} from "../index";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import i18next from "i18next";
 import axios from "axios";
 import CryptoJS from "crypto-js";
@@ -15,7 +21,11 @@ const TodoApp = () => {
   const [showMainApp, setShowMainApp] = useState(false);
   const [isUploadPopupOpen, setIsUploadPopupOpen] = useState(false);
 
+  const [filter, setFilter] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
   const [todos, setTodos] = useState([]);
+
   const [userId, setUserId] = useState(() => {
     let id = localStorage.getItem("userId");
     if (!id) {
@@ -26,7 +36,6 @@ const TodoApp = () => {
     }
     return id;
   });
-
 
   useEffect(() => {
     i18next.changeLanguage(navigator.language || navigator.userLanguage);
@@ -44,6 +53,31 @@ const TodoApp = () => {
 
     fetchTodos();
   }, [userId]);
+
+  const filterTodos = (todos, filter, selectedCategory, selectedStatus) => {
+    let filteredTodos = [...todos];
+    switch (filter) {
+      case "all":
+        break;
+      case "favorites":
+        filteredTodos = filteredTodos.filter((todo) => todo.isFavorite);
+        break;
+      default:
+        break;
+    }
+    if (selectedCategory === "personal" || selectedCategory === "business") {
+      filteredTodos = filteredTodos.filter(
+        (todo) => todo.category === selectedCategory
+      );
+    }
+    if (selectedStatus === "completed" || selectedStatus === "incomplete") {
+      const isCompleted = selectedStatus === "completed";
+      filteredTodos = filteredTodos.filter(
+        (todo) => todo.isCompleted === isCompleted
+      );
+    }
+    return filteredTodos;
+  };
 
   const addTodo = async (task, category) => {
     try {
@@ -64,7 +98,9 @@ const TodoApp = () => {
       const response = await axios.put(`http://localhost:5000/${id}`, {
         isFavorite: !todoToUpdate.isFavorite,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
+      setTodos(
+        todos.map((todo) => (todo._id === id ? response.data.data : todo))
+      );
     } catch (error) {
       console.error("Error toggling favorite:", error);
     }
@@ -76,7 +112,9 @@ const TodoApp = () => {
       const response = await axios.put(`http://localhost:5000/${id}`, {
         isCompleted: !todoToUpdate.isCompleted,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
+      setTodos(
+        todos.map((todo) => (todo._id === id ? response.data.data : todo))
+      );
     } catch (error) {
       console.error("Error completing todo:", error);
     }
@@ -88,7 +126,9 @@ const TodoApp = () => {
       const response = await axios.put(`http://localhost:5000/${id}`, {
         isEditing: !todoToUpdate.isEditing,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
+      setTodos(
+        todos.map((todo) => (todo._id === id ? response.data.data : todo))
+      );
     } catch (error) {
       console.error("Error editing todo:", error);
     }
@@ -101,7 +141,9 @@ const TodoApp = () => {
         category,
         isEditing: false,
       });
-      setTodos(todos.map((todo) => (todo._id === id ? response.data.data : todo)));
+      setTodos(
+        todos.map((todo) => (todo._id === id ? response.data.data : todo))
+      );
     } catch (error) {
       console.error("Error upgrading todo:", error);
     }
@@ -154,24 +196,53 @@ const TodoApp = () => {
 
   const formatDateTime = (dateString) => {
     const options = {
-      year: "numeric", month: "long", day: "numeric",
-      hour: "2-digit", minute: "2-digit"
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const validateFile = (data) => {
+    const validCategories = ["personal", "business"];
+    let isValid = true;
+    let message = "";
+
+    data.forEach((row) => {
+      if (
+        !row.task ||
+        !row.category ||
+        !validCategories.includes(row.category.toLowerCase())
+      ) {
+        isValid = false;
+        message = "Error in category column!";
+      }
+    });
+
+    return { isValid, message };
+  };
+
   const validateAndUploadTodos = async (data, userId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/upload/${userId}`, data, {
-        headers: {
-          "Content-Type": "application/json"
+      const response = await axios.post(
+        `http://localhost:5000/upload/${userId}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
       setTodos([...todos, ...response.data.data]);
       return { success: true };
     } catch (error) {
       if (error.response && error.response.status === 413) {
-        return { success: false, message: "The file you tried to upload is too large." };
+        return {
+          success: false,
+          message: "The file you tried to upload is too large.",
+        };
       } else {
         return { success: false, message: "Error uploading file" };
       }
@@ -198,25 +269,33 @@ const TodoApp = () => {
         >
           <h1>{t("todoApp.header")}</h1>
           <TodoForm addTodo={addTodo} t={t} />
-          <TodoList 
-            todos={todos} 
-            deleteTodo={deleteTodo} 
-            deleteAllTodos={deleteAllTodos} 
-            readTodo={readTodo} 
-            editTodo={editTodo} 
-            upgradeTodo={upgradeTodo} 
-            completeTodo={completeTodo} 
-            shareTodos={shareTodos} 
-            favoriteTodo={favoriteTodo} 
+          <TodoList
+            todos={todos}
+            deleteTodo={deleteTodo}
+            deleteAllTodos={deleteAllTodos}
+            readTodo={readTodo}
+            editTodo={editTodo}
+            upgradeTodo={upgradeTodo}
+            completeTodo={completeTodo}
+            shareTodos={shareTodos}
+            favoriteTodo={favoriteTodo}
             formatDateTime={formatDateTime}
-            isVisible={!isUploadPopupOpen} 
+            isVisible={!isUploadPopupOpen}
             t={t}
+            filter={filter}
+            setFilter={setFilter}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            selectedStatus={selectedStatus}
+            setSelectedStatus={setSelectedStatus}
+            filterTodos={filterTodos}
           />
-          <TodoUpload 
-            validateAndUploadTodos={validateAndUploadTodos} 
-            userId={userId} 
-            isUploadPopupOpen={isUploadPopupOpen} 
-            setIsUploadPopupOpen={setIsUploadPopupOpen} 
+          <TodoUpload
+            validateAndUploadTodos={validateAndUploadTodos}
+            validateFile={validateFile} // Pass validateFile function as prop
+            userId={userId}
+            isUploadPopupOpen={isUploadPopupOpen}
+            setIsUploadPopupOpen={setIsUploadPopupOpen}
           />
           <TodoFooter t={t} />
         </motion.div>

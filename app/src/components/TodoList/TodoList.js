@@ -1,34 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { TodoCard, TodoEdit } from "../index";
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import "./TodoList.css";
 
-const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTodo, editTodo, upgradeTodo, completeTodo, shareTodos, favoriteTodo, formatDateTime, isVisible, t }) => {
-  const [filter, setFilter] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
-
-  const filterTodos = (todos, filter, selectedCategory, selectedStatus) => {
-    let filteredTodos = [...todos];
-    switch (filter) {
-      case "all":
-        break;
-      case "favorites":
-        filteredTodos = filteredTodos.filter(todo => todo.isFavorite);
-        break;
-      default:
-        break;
-    }
-    if (selectedCategory === "personal" || selectedCategory === "business") {
-      filteredTodos = filteredTodos.filter(todo => todo.category === selectedCategory);
-    }
-    if (selectedStatus === "completed" || selectedStatus === "incomplete") {
-      const isCompleted = selectedStatus === "completed";
-      filteredTodos = filteredTodos.filter(todo => todo.isCompleted === isCompleted);
-    }
-    return filteredTodos;
-  };
+const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTodo, editTodo, upgradeTodo, completeTodo, shareTodos, favoriteTodo, formatDateTime, isVisible, filter, setFilter, selectedCategory, setSelectedCategory, selectedStatus, setSelectedStatus, filterTodos, t }) => {
 
   const filteredTodos = filterTodos(todos, filter, selectedCategory, selectedStatus);
 

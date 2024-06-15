@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 const Schema = mongoose.Schema;
 
 const TodoSchema = new Schema({
@@ -21,7 +21,7 @@ const TodoSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['personal', 'business'],
+    enum: ["personal", "business"],
     required: true
   },
   userId: {
@@ -31,6 +31,6 @@ const TodoSchema = new Schema({
   }
 }, { timestamps: true });
 
-const Todo = mongoose.model('Todo', TodoSchema);
+const Todo = mongoose.model("Todo", TodoSchema);
 
 module.exports = Todo;

@@ -1,22 +1,33 @@
-const Todo = require('../models/todo');
+const Todo = require("../models/todo");
+const CryptoJS = require("crypto-js");
+require("dotenv").config();
 
-const getTodos = async (userId) => {
+const SECRET_KEY = process.env.SECRET_KEY;
+
+const decryptUUID = (hash) => {
+  const bytes = CryptoJS.AES.decrypt(hash, SECRET_KEY);
+  return bytes.toString(CryptoJS.enc.Utf8);
+};
+
+const getTodos = async (hash) => {
+  const userId = decryptUUID(hash);
   return await Todo.find({ userId });
 };
 
+// At the current project logic, this function doesn"t have usage because by default the user is displayed all todos and then depending on the user interaction the todos are filtered (on frontend) by category, favorites and completion status. In case of project logic change, this function can be used to get todos of a specific category
 
-// At the current project logic, this function doesn't have usage because by default the user is displayed all todos and then depending on the user interaction the todos are filtered (on frontend) by category, favorites and completion status. In case of project logic change, this function can be used to get todos of a specific category
-
-const getTodosByCategory = async (userId, category) => {
-  const validCategories = ['personal', 'business'];
+const getTodosByCategory = async (hash, category) => {
+  const userId = decryptUUID(hash);
+  const validCategories = ["personal", "business"];
   if (!validCategories.includes(category.toLowerCase())) {
-    throw new Error('Invalid category');
+    throw new Error("Invalid category");
   }
 
   return await Todo.find({ userId, category: category.toLowerCase() });
 };
 
-const createTodo = async ({ task, category, userId }) => {
+const createTodo = async ({ task, category, userId: hash }) => {
+  const userId = decryptUUID(hash);
   const newTodo = new Todo({
     task,
     category,
@@ -31,7 +42,7 @@ const createTodo = async ({ task, category, userId }) => {
 const updateTodo = async (id, { task, category, isFavorite, isCompleted, isEditing }) => {
   const todo = await Todo.findById(id);
   if (!todo) {
-    throw new Error('Todo not found');
+    throw new Error("Todo not found");
   }
 
   todo.task = task !== undefined ? task : todo.task;
@@ -46,26 +57,28 @@ const updateTodo = async (id, { task, category, isFavorite, isCompleted, isEditi
 const deleteTodo = async (id) => {
   const result = await Todo.deleteOne({ _id: id });
   if (result.deletedCount === 0) {
-    throw new Error('Todo not found');
+    throw new Error("Todo not found");
   }
   return result;
 };
 
-const deleteAllTodosForUser = async (userId) => {
+const deleteAllTodosForUser = async (hash) => {
+  const userId = decryptUUID(hash);
   const result = await Todo.deleteMany({ userId });
   if (result.deletedCount === 0) {
-    throw new Error('No todos found for this user');
+    throw new Error("No todos found for this user");
   }
   return result;
 };
 
-const uploadTodos = async (todos, userId) => {
-  const validCategories = ['personal', 'business'];
+const uploadTodos = async (todos, hash) => {
+  const userId = decryptUUID(hash);
+  const validCategories = ["personal", "business"];
   const newTodos = [];
 
   todos.forEach(({ task, category }) => {
     if (!category || !validCategories.includes(category.toLowerCase())) {
-      throw new Error('Invalid data format. Check category values.');
+      throw new Error("Invalid data format. Check category values.");
     }
 
     // At first glance, a more optimized solution would be to reuse the already existing createTodo function. However, the execution of the current code requires significantly fewer operations, which can be seen when comparing the time complexity:

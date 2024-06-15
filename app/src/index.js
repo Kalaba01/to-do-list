@@ -5,12 +5,12 @@ import reportWebVitals from "./reportWebVitals";
 
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
-import LanguageDetector from 'i18next-browser-languagedetector';
+import LanguageDetector from "i18next-browser-languagedetector";
 
-import global_en from './locales/en/global.json';
-import global_fr from './locales/fr/global.json';
-import global_hi from './locales/hi/global.json';
-import global_zh from './locales/zh/global.json';
+import global_en from "./locales/en/global.json";
+import global_fr from "./locales/fr/global.json";
+import global_hi from "./locales/hi/global.json";
+import global_zh from "./locales/zh/global.json";
 
 i18next
   .use(LanguageDetector)

@@ -4,7 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import "./TodoApp.css";
+
+const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
 
 const TodoApp = () => {
   const { t } = useTranslation("global");
@@ -14,7 +17,9 @@ const TodoApp = () => {
     let id = localStorage.getItem("userId");
     if (!id) {
       id = uuidv4();
-      localStorage.setItem("userId", id);
+      const hashedId = CryptoJS.AES.encrypt(id, SECRET_KEY).toString();
+      localStorage.setItem("userId", hashedId);
+      return hashedId;
     }
     return id;
   });
@@ -112,7 +117,7 @@ const TodoApp = () => {
       await axios.delete(`http://localhost:5000/user/${userId}`);
       setTodos([]);
     } catch (error) {
-      console.error('Error deleting all todos:', error);
+      console.error("Error deleting all todos:", error);
     }
   };
 
@@ -145,8 +150,8 @@ const TodoApp = () => {
 
   const formatDateTime = (dateString) => {
     const options = {
-      year: 'numeric', month: 'long', day: 'numeric',
-      hour: '2-digit', minute: '2-digit'
+      year: "numeric", month: "long", day: "numeric",
+      hour: "2-digit", minute: "2-digit"
     };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
@@ -155,7 +160,7 @@ const TodoApp = () => {
     try {
       const response = await axios.post(`http://localhost:5000/upload/${userId}`, data, {
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         }
       });
       setTodos([...todos, ...response.data.data]);
@@ -168,7 +173,7 @@ const TodoApp = () => {
       }
     }
   };
-  
+
   return (
     <div className="TodoApp">
       <h1>{t("todoApp.header")}</h1>

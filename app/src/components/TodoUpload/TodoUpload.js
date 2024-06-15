@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 import { FaFileUpload } from "react-icons/fa";
-import Papa from 'papaparse';
-import './TodoUpload.css';
+import Papa from "papaparse";
+import "./TodoUpload.css";
 
 const TodoUpload = ({ validateAndUploadTodos, userId }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -34,7 +34,7 @@ const TodoUpload = ({ validateAndUploadTodos, userId }) => {
           }
         },
         error: (error) => {
-          console.error('PapaParse error:', error);
+          console.error("PapaParse error:", error);
         }
       });
     }
@@ -74,7 +74,7 @@ const TodoUpload = ({ validateAndUploadTodos, userId }) => {
   };
 
   const validateFile = (data) => {
-    const validCategories = ['personal', 'business'];
+    const validCategories = ["personal", "business"];
     let isValid = true;
     let message = "";
   
@@ -118,7 +118,7 @@ const TodoUpload = ({ validateAndUploadTodos, userId }) => {
               type="file"
               accept=".csv"
               ref={fileInputRef}
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               onChange={handleFileChange}
             />
             {validationMessage && <p className="validation-message error">{validationMessage}</p>}

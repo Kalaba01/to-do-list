@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { TodoInput } from "../index";
 import { BiTask } from "react-icons/bi";
 
@@ -26,7 +26,7 @@ const TodoEdit = ({ upgradeTodo, todo, t }) => {
       formClass="TodoEdit"
       inputClass="todo-edit"
       buttonClass="todo-btn-edit"
-      buttonIcon={<BiTask size={22} className='todo-icon-edit' />}
+      buttonIcon={<BiTask size={22} className="todo-icon-edit" />}
       placeholder={t("todoEdit.inputPlaceholder")}
       dropdownClass="todo-edit-dropdown"
       submitTodo={submitTodo}

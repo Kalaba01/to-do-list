@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import { TodoInput } from "../index";
 import { MdAssignmentAdd } from "react-icons/md";
 
@@ -40,7 +40,7 @@ const TodoForm = ({ addTodo, t }) => {
       formClass="TodoForm"
       inputClass="todo-input"
       buttonClass="todo-btn"
-      buttonIcon={<MdAssignmentAdd size={22} className='todo-icon' />}
+      buttonIcon={<MdAssignmentAdd size={22} className="todo-icon" />}
       placeholder={t("todoForm.inputPlaceholder")}
       dropdownClass="todo-dropdown"
       submitTodo={submitTodo}

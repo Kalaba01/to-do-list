@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import "./TodoInput.css";
 
 const TodoInput = ({ input, setInput, selectedCategory, setSelectedCategory, formClass, inputClass, buttonClass, buttonIcon, placeholder, dropdownClass, submitTodo, dropdownOptions }) => {
@@ -17,7 +17,7 @@ const TodoInput = ({ input, setInput, selectedCategory, setSelectedCategory, for
       </button>
       <input
         ref={inputRef}
-        type='text'
+        type="text"
         className={inputClass}
         placeholder={placeholder}
         value={input}

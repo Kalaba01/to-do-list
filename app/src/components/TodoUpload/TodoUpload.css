@@ -2,10 +2,12 @@
     position: fixed;
     top: 55%;
     left: 50%;
+    width: 40vw;
     transform: translate(-50%, -50%);
     background-color: #fff;
     color: black;
     padding: 20px;
+    margin-bottom: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -75,8 +77,8 @@
 }
 
 .loading-spinner {
-    border: 4px solid #f3f3f3; /* Light grey */
-    border-top: 4px solid #3498db; /* Blue */
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -95,4 +97,21 @@
 
 .validation-message.error {
     color: red;
+}
+
+@media screen and (max-width: 850px) {
+    .upload-popup {
+        width: 50vw;
+    }
+
+    .upload-circle{
+        bottom: 9%;
+        right: 1%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .upload-popup {
+        width: 75vw;
+    }
 }

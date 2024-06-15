@@ -3,8 +3,7 @@ import { FaFileUpload } from "react-icons/fa";
 import Papa from "papaparse";
 import "./TodoUpload.css";
 
-const TodoUpload = ({ validateAndUploadTodos, userId }) => {
-  const [showPopup, setShowPopup] = useState(false);
+const TodoUpload = ({ validateAndUploadTodos, userId, isUploadPopupOpen, setIsUploadPopupOpen }) => {
   const [validationMessage, setValidationMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
@@ -25,7 +24,7 @@ const TodoUpload = ({ validateAndUploadTodos, userId }) => {
             const result = await validateAndUploadTodos(results.data, userId);
             setLoading(false);
             if (result.success) {
-              setShowPopup(false);
+              setIsUploadPopupOpen(false);
             } else {
               setValidationMessage(result.message);
             }
@@ -57,7 +56,7 @@ const TodoUpload = ({ validateAndUploadTodos, userId }) => {
             const result = await validateAndUploadTodos(results.data, userId);
             setLoading(false);
             if (result.success) {
-              setShowPopup(false);
+              setIsUploadPopupOpen(false);
             } else {
               setValidationMessage(result.message);
             }
@@ -89,16 +88,16 @@ const TodoUpload = ({ validateAndUploadTodos, userId }) => {
   };
 
   const closePopup = () => {
-    setShowPopup(false);
+    setIsUploadPopupOpen(false);
     setValidationMessage("");
   };
 
   return (
     <div className="TodoUpload">
-      <div className="upload-circle" onClick={() => setShowPopup(true)}>
+      <div className="upload-circle" onClick={() => setIsUploadPopupOpen(true)}>
         <FaFileUpload />
       </div>
-      {showPopup && (
+      {isUploadPopupOpen && (
         <div className="upload-popup">
           <div className="upload-popup-content">
             <h3>Upload your CSV file</h3>

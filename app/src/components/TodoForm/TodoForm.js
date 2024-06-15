@@ -39,7 +39,7 @@ const TodoForm = ({ addTodo, t }) => {
       setSelectedCategory={setSelectedCategory}
       formClass="TodoForm"
       inputClass="todo-input"
-      buttonClass="todo-btn"
+      buttonClass="todo-icon"
       buttonIcon={<MdAssignmentAdd size={22} className="todo-icon" />}
       placeholder={t("todoForm.inputPlaceholder")}
       dropdownClass="todo-dropdown"

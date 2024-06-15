@@ -5,5 +5,6 @@ import TodoForm from "./TodoForm/TodoForm";
 import TodoInput from "./TodoInput/TodoInput";
 import TodoList from "./TodoList/TodoList";
 import TodoUpload from "./TodoUpload/TodoUpload";
+import TodoWelcome from "./TodoWelcome/TodoWelcome";
 
-export {TodoCard, TodoEdit, TodoFooter, TodoForm, TodoInput, TodoList, TodoUpload}
+export { TodoCard, TodoEdit, TodoFooter, TodoForm, TodoInput, TodoList, TodoUpload, TodoWelcome }

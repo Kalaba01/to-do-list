@@ -25,7 +25,7 @@ const TodoEdit = ({ upgradeTodo, todo, t }) => {
       setSelectedCategory={setSelectedCategory}
       formClass="TodoEdit"
       inputClass="todo-edit"
-      buttonClass="todo-btn-edit"
+      buttonClass="todo-icon-edit"
       buttonIcon={<BiTask size={22} className="todo-icon-edit" />}
       placeholder={t("todoEdit.inputPlaceholder")}
       dropdownClass="todo-edit-dropdown"

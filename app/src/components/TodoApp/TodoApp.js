@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { TodoForm, TodoList, TodoFooter, TodoUpload } from "../index";
+import { TodoForm, TodoList, TodoFooter, TodoUpload, TodoWelcome } from "../index";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
+import { motion } from 'framer-motion';
 import i18next from "i18next";
 import axios from "axios";
 import CryptoJS from "crypto-js";
@@ -11,6 +12,8 @@ const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
 
 const TodoApp = () => {
   const { t } = useTranslation("global");
+  const [showMainApp, setShowMainApp] = useState(false);
+  const [isUploadPopupOpen, setIsUploadPopupOpen] = useState(false);
 
   const [todos, setTodos] = useState([]);
   const [userId, setUserId] = useState(() => {
@@ -23,6 +26,7 @@ const TodoApp = () => {
     }
     return id;
   });
+
 
   useEffect(() => {
     i18next.changeLanguage(navigator.language || navigator.userLanguage);
@@ -174,26 +178,50 @@ const TodoApp = () => {
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowMainApp(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="TodoApp">
-      <h1>{t("todoApp.header")}</h1>
-      <TodoForm addTodo={addTodo} t={t} />
-      <TodoList
-        todos={todos}
-        deleteTodo={deleteTodo}
-        deleteAllTodos={deleteAllTodos}
-        readTodo={readTodo}
-        editTodo={editTodo}
-        upgradeTodo={upgradeTodo}
-        completeTodo={completeTodo}
-        shareTodos={shareTodos}
-        favoriteTodo={favoriteTodo}
-        formatDateTime={formatDateTime}
-        t={t}
-      />
-      <TodoUpload validateAndUploadTodos={validateAndUploadTodos} userId={userId} />
-      <TodoFooter t={t} />
-    </div>
+    <>
+      <TodoWelcome onAnimationComplete={() => setShowMainApp(true)} />
+      {showMainApp && (
+        <motion.div
+          initial={{ y: -window.innerHeight }}
+          animate={{ y: 0 }}
+          transition={{ duration: 2, delay: 0.5 }}
+          className="TodoApp"
+        >
+          <h1>{t("todoApp.header")}</h1>
+          <TodoForm addTodo={addTodo} t={t} />
+          <TodoList 
+            todos={todos} 
+            deleteTodo={deleteTodo} 
+            deleteAllTodos={deleteAllTodos} 
+            readTodo={readTodo} 
+            editTodo={editTodo} 
+            upgradeTodo={upgradeTodo} 
+            completeTodo={completeTodo} 
+            shareTodos={shareTodos} 
+            favoriteTodo={favoriteTodo} 
+            formatDateTime={formatDateTime}
+            isVisible={!isUploadPopupOpen} 
+            t={t}
+          />
+          <TodoUpload 
+            validateAndUploadTodos={validateAndUploadTodos} 
+            userId={userId} 
+            isUploadPopupOpen={isUploadPopupOpen} 
+            setIsUploadPopupOpen={setIsUploadPopupOpen} 
+          />
+          <TodoFooter t={t} />
+        </motion.div>
+      )}
+    </>
   );
 };
 

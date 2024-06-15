@@ -14,7 +14,7 @@
 }
 
 .TodoCard.incompleted {
-    background-image: linear-gradient(to left, #7f7fd5, #86a8e7, #91eae4);
+    background-image: linear-gradient(to left, #7f7fd5, #86a8e7, #91eae4b4);
 }
 
 .TodoCard.completed {

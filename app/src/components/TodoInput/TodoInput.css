@@ -1,3 +1,8 @@
+:root{
+    --icon-color: #f5f5f5;
+    --input-bc: rgba(255, 255, 255, 0.1);
+}
+
 /* -------------------------INPUT FOR ENTERING TODO----------------------- */
 .TodoForm {
     position: relative;
@@ -8,18 +13,22 @@
 
 .todo-icon {
     position: absolute;
-    right: 330px;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    border: none;
+    background: none;
     cursor: pointer;
-    color: #fff;
+    padding: 0;
+    font-size: 15px;
+    color: var(--icon-color);
 }
 
 .todo-input {
     width: 75%;
     padding: 15px 10px 15px 45px;
     border: 1.5px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--input-bc);
     color: #fff;
     border-radius: 10px;
     font-size: 15px;
@@ -37,43 +46,56 @@
     top: 50%;
     transform: translateY(-50%);
     border: 1.5px solid #fff;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--input-bc);
     color: #fff;
     border-radius: 10px;
     padding: 10px;
     font-size: 15px;
 }
 
-.todo-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 0;
-    font-size: 15px;
-    color: #000;
+@media (prefers-color-scheme: dark) {
+    .todo-icon{
+        color: var(--dark-icon-color);
+    }
 }
 
 @media screen and (max-width: 850px) {
     .todo-input {
-        padding: 9px 33px 9px 9px;
-        font-size: 12px;
+        width: 80%;
+        padding: 11px 35px 11px 11px;
+        font-size: 13px;
     }
+
     .todo-input::placeholder {
-        padding-left: 4vw;
+        padding-left: 5.5vw;
     }
+
+    .todo-icon{
+        left: 12px;
+    }
+
     .todo-dropdown {
         font-size: 12px;
         padding: 5px;
+        right: 20px;
     }
 }
 
 @media screen and (max-width: 450px) {
+    .todo-input{
+        width: 85%;
+    }
+
     .todo-input::placeholder {
-        padding-left: 7vw;
+        padding-left: 7.5vw;
+    }
+
+    .todo-icon{
+        left: 7px;
+    }
+
+    .todo-dropdown{
+        right: 10px;
     }
 }
 
@@ -101,18 +123,22 @@
 
 .todo-icon-edit {
     position: absolute;
-    left: 30px;
+    left: 25px;
     top: 50%;
     transform: translateY(-50%);
+    border: none;
+    background: none;
     cursor: pointer;
-    color: #fff;
+    padding: 0;
+    font-size: 20px;
+    color: var(--icon-color);
 }
 
 .todo-edit {
     width: 75%;
     padding: 15px 10px 15px 45px;
     border: 1.5px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--input-bc);
     color: #fff;
     border-radius: 10px;
     font-size: 15px;
@@ -124,37 +150,17 @@
     font-style: italic;
 }
 
-.todo-btn-edit {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 0;
-    font-size: 20px;
-    color: #000;
-}
-
 .todo-edit-dropdown {
     position: absolute;
     right: 50px;
     top: 50%;
     transform: translateY(-50%);
     border: 1.5px solid #fff;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--input-bc);
     color: #fff;
     border-radius: 10px;
     padding: 10px;
     font-size: 15px;
-}
-
-@media screen and (max-width: 850px) {
-    .todo-edit-dropdown {
-        font-size: 12px;
-        padding: 5px;
-    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -168,7 +174,20 @@
         color: #aaa;
     }
 
-    .todo-btn-edit {
-        color: #f5f5f5;
+    .todo-icon-edit {
+        color: var(--dark-icon-color);
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .todo-edit-dropdown {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .todo-icon-edit {
+        left: 10px;
     }
 }

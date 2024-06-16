@@ -1,11 +1,11 @@
 import React from "react";
-import { TodoCard, TodoEdit } from "../index";
+import { TodoContent } from "../index"
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import "./TodoList.css";
 
 const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTodo, editTodo, upgradeTodo, completeTodo, shareTodos, favoriteTodo, formatDateTime, isVisible, filter, setFilter, selectedCategory, setSelectedCategory, selectedStatus, setSelectedStatus, filterTodos, t }) => {
-
+  
   const filteredTodos = filterTodos(todos, filter, selectedCategory, selectedStatus);
 
   if (!isVisible) return null;
@@ -31,20 +31,18 @@ const TodoList = ({ todos, deleteTodo, deleteAllTodos, readTodo, editTodo, upgra
         </select>
       </div>
       {filteredTodos.map((todo, index) => (
-        todo.isEditing ? (
-          <TodoEdit upgradeTodo={upgradeTodo} todo={todo} key={index} t={t} />
-        ) : (
-          <TodoCard 
-            task={todo} 
-            key={index} 
-            deleteTodo={deleteTodo} 
-            readTodo={readTodo} 
-            editTodo={editTodo} 
-            completeTodo={completeTodo} 
-            favoriteTodo={favoriteTodo}
-            formatDateTime={formatDateTime}
-          />  
-        )
+        <TodoContent 
+          key={index} 
+          todo={todo} 
+          upgradeTodo={upgradeTodo} 
+          deleteTodo={deleteTodo} 
+          readTodo={readTodo} 
+          editTodo={editTodo} 
+          completeTodo={completeTodo} 
+          favoriteTodo={favoriteTodo} 
+          formatDateTime={formatDateTime} 
+          t={t} 
+        />
       ))}
     </div>
   );

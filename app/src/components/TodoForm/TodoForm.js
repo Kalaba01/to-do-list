@@ -5,6 +5,8 @@ import { MdAssignmentAdd } from "react-icons/md";
 const TodoForm = ({ addTodo, t }) => {
   const [input, setInput] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [shake, setShake] = useState(false);
+  const [error, setError] = useState(false);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -17,12 +19,19 @@ const TodoForm = ({ addTodo, t }) => {
     e.preventDefault();
 
     if (!selectedCategory) {
-      alert(t("todoForm.noCategoryMsg"));
+      setShake(true);
+      setError(true);
+      setTimeout(() => {
+        setShake(false);
+        setError(false);
+      }, 500);
       return;
     }
 
     addTodo(input, selectedCategory);
     setInput("");
+    setSelectedCategory("");
+    setError(false);
   }
 
   const dropdownOptions = {
@@ -37,12 +46,12 @@ const TodoForm = ({ addTodo, t }) => {
       setInput={setInput}
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}
-      formClass="TodoForm"
+      formClass={`TodoForm ${shake ? 'shake' : ''}`}
       inputClass="todo-input"
       buttonClass="todo-icon"
       buttonIcon={<MdAssignmentAdd size={22} className="todo-icon" />}
       placeholder={t("todoForm.inputPlaceholder")}
-      dropdownClass="todo-dropdown"
+      dropdownClass={`todo-dropdown ${error ? 'error' : ''}`}
       submitTodo={submitTodo}
       dropdownOptions={dropdownOptions}
     />

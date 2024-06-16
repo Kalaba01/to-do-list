@@ -11,7 +11,7 @@ const TodoInput = ({ input, setInput, selectedCategory, setSelectedCategory, for
   }, []);
 
   return (
-    <form className={`${formClass}`} onSubmit={submitTodo}>
+    <form className={formClass} onSubmit={submitTodo}>
       <button type="submit" className={buttonClass}>
         {buttonIcon}
       </button>

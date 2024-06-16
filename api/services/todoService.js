@@ -4,11 +4,13 @@ require("dotenv").config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
+// Function for decrypting
 const decryptUUID = (hash) => {
   const bytes = CryptoJS.AES.decrypt(hash, SECRET_KEY);
   return bytes.toString(CryptoJS.enc.Utf8);
 };
 
+// Function for getting all todos for specific user
 const getTodos = async (hash) => {
   const userId = decryptUUID(hash);
   return await Todo.find({ userId });
@@ -26,6 +28,7 @@ const getTodosByCategory = async (hash, category) => {
   return await Todo.find({ userId, category: category.toLowerCase() });
 };
 
+// Function for creating new todo
 const createTodo = async ({ task, category, userId: hash }) => {
   const userId = decryptUUID(hash);
   const newTodo = new Todo({
@@ -39,6 +42,7 @@ const createTodo = async ({ task, category, userId: hash }) => {
   return await newTodo.save();
 };
 
+// Function for editing existing todo (content, favorite, category, completion status)
 const updateTodo = async (id, { task, category, isFavorite, isCompleted, isEditing }) => {
   const todo = await Todo.findById(id);
   if (!todo) {
@@ -54,6 +58,7 @@ const updateTodo = async (id, { task, category, isFavorite, isCompleted, isEditi
   return await todo.save();
 };
 
+// Function for deleting single todo
 const deleteTodo = async (id) => {
   const result = await Todo.deleteOne({ _id: id });
   if (result.deletedCount === 0) {
@@ -62,6 +67,7 @@ const deleteTodo = async (id) => {
   return result;
 };
 
+// Function for deleting all todos for specific user
 const deleteAllTodosForUser = async (hash) => {
   const userId = decryptUUID(hash);
   const result = await Todo.deleteMany({ userId });
@@ -71,6 +77,7 @@ const deleteAllTodosForUser = async (hash) => {
   return result;
 };
 
+// Function for saving todos from uploaded .csv file
 const uploadTodos = async (todos, hash) => {
   const userId = decryptUUID(hash);
   const validCategories = ["personal", "business"];

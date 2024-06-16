@@ -1,5 +1,6 @@
 const todoService = require("../services/todoService");
 
+// Function for getting all todos for specific user
 const getTodos = async (req, res) => {
   try {
     const todos = await todoService.getTodos(req.params.userId);
@@ -9,6 +10,7 @@ const getTodos = async (req, res) => {
   }
 };
 
+// Function for creating new todo
 const createTodo = async (req, res) => {
   try {
     const todo = await todoService.createTodo(req.body);
@@ -18,6 +20,7 @@ const createTodo = async (req, res) => {
   }
 };
 
+// Function for editing existing todo (content, favorite, category, completion status)
 const updateTodo = async (req, res) => {
   try {
     const updatedTodo = await todoService.updateTodo(req.params.id, req.body);
@@ -31,6 +34,7 @@ const updateTodo = async (req, res) => {
   }
 };
 
+// Function for deleting single todo
 const deleteTodo = async (req, res) => {
   try {
     await todoService.deleteTodo(req.params.id);
@@ -44,6 +48,7 @@ const deleteTodo = async (req, res) => {
   }
 };
 
+// Function for deleting all todos for specific user
 const deleteAllTodosForUser = async (req, res) => {
   try {
     await todoService.deleteAllTodosForUser(req.params.userId);
@@ -56,7 +61,8 @@ const deleteAllTodosForUser = async (req, res) => {
     }
   }
 };
-  
+
+// Function for saving todos from uploaded .csv file
 const uploadTodos = async (req, res) => {
   try {
     const todos = req.body;

@@ -1,19 +1,22 @@
 {
+  "todoWelcome": {
+    "header": "कार्य सूची"
+  },
   "todoApp": {
-    "header": "काम पूरा करो!"
+    "header": "काम पूरा करें!"
   },
   "todoForm": {
-    "inputPlaceholder": "मुझे करना है...",
+    "inputPlaceholder": "मुझे यह करना है...",
     "option1": "श्रेणी चुनें",
     "option2": "व्यक्तिगत",
-    "option3": "व्यापार",
+    "option3": "व्यवसायिक",
     "noCategoryMsg": "कृपया एक श्रेणी चुनें!"
   },
   "todoEdit": {
-    "inputPlaceholder": "टू-डू अपडेट करें"
+    "inputPlaceholder": "कार्य अपडेट करें"
   },
   "todoList": {
-    "mailBluePrint1": "यह मेरी टू-डू सूची है:",
+    "mailBluePrint1": "यह मेरी कार्य सूची है:",
     "mailBluePrint2": "कार्य:",
     "mailBluePrint3": "श्रेणी:",
     "mailBluePrint4": "स्थिति:",
@@ -21,12 +24,18 @@
     "clasicFilter2": "पसंदीदा",
     "dropdownFilter1Option1": "श्रेणी",
     "dropdownFilter1Option2": "व्यक्तिगत",
-    "dropdownFilter1Option3": "व्यापार",
+    "dropdownFilter1Option3": "व्यवसायिक",
     "dropdownFilter2Option1": "स्थिति",
-    "dropdownFilter2Option2": "पूर्ण",
+    "dropdownFilter2Option2": "पूरा हुआ",
     "dropdownFilter2Option3": "अपूर्ण"
   },
+  "todoUpload": {
+    "header": "अपना CSV फ़ाइल अपलोड करें",
+    "text1": "आपकी CSV फ़ाइल में निम्नलिखित स्तंभ होने चाहिए:",
+    "text2": "फ़ाइल को यहाँ खींचें और छोड़ें या अपने डिवाइस से चयन करने के लिए क्लिक करें",
+    "button": "बंद करें"
+  },
   "todoFooter": {
-    "footer": "हलक एप्स इंटरन द्वारा संचालित"
+    "footer": "Hulk Apps Intern द्वारा संचालित"
   }
 }

@@ -62,6 +62,35 @@
     padding: 0px 3.5%;
 }
 
+@media (prefers-color-scheme: dark) {
+    .TodoCard {
+        border: 1.5px solid #fff;
+        color: #e0e0e0;
+        background-color: #333;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .TodoCard.incompleted {
+        background-image: linear-gradient(to left, #41416e, #425474, #46726f);
+    }
+
+    .TodoCard.completed {
+        background-image: linear-gradient(to left, #1a4e3e, #0c2b4b);
+    }
+
+    .icon {
+        color: #e0e0e0;
+    }
+
+    .icon:hover {
+        color: #ffcc00;
+    }
+
+    .TodoCard p:hover {
+        color: #ffcc00;
+    }
+}
+
 @media screen and (max-width: 850px) {
     .TodoCard {
         padding: 8px;
@@ -99,34 +128,5 @@
 
     .todo-dates{
         font-size: 0.8rem;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    .TodoCard {
-        border: 1.5px solid #fff;
-        color: #e0e0e0;
-        background-color: #333;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-    }
-
-    .TodoCard.incompleted {
-        background-image: linear-gradient(to left, #41416e, #425474, #46726f);
-    }
-
-    .TodoCard.completed {
-        background-image: linear-gradient(to left, #1a4e3e, #0c2b4b);
-    }
-
-    .icon {
-        color: #e0e0e0;
-    }
-
-    .icon:hover {
-        color: #ffcc00;
-    }
-
-    .TodoCard p:hover {
-        color: #ffcc00;
     }
 }

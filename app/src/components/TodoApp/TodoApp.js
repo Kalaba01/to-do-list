@@ -256,7 +256,7 @@ const TodoApp = () => {
 
   return (
     <>
-      <TodoWelcome onAnimationComplete={() => setShowMainApp(true)} />
+      <TodoWelcome t={t} onAnimationComplete={() => setShowMainApp(true)} />
       {showMainApp && (
         <motion.div
           initial={{ y: -window.innerHeight }}
@@ -293,6 +293,7 @@ const TodoApp = () => {
             userId={userId}
             isUploadPopupOpen={isUploadPopupOpen}
             setIsUploadPopupOpen={setIsUploadPopupOpen}
+            t={t}
           />
           <TodoFooter t={t} />
         </motion.div>

@@ -1,4 +1,7 @@
 {
+  "todoWelcome": {
+    "header": "待办事项列表"
+  },
   "todoApp": {
     "header": "完成任务！"
   },
@@ -6,27 +9,33 @@
     "inputPlaceholder": "我需要...",
     "option1": "选择类别",
     "option2": "个人",
-    "option3": "商业",
+    "option3": "商务",
     "noCategoryMsg": "请选择一个类别！"
   },
   "todoEdit": {
-    "inputPlaceholder": "更新待办"
+    "inputPlaceholder": "更新待办事项"
   },
   "todoList": {
-    "mailBluePrint1": "这是我的待办列表：",
+    "mailBluePrint1": "这是我的待办事项列表：",
     "mailBluePrint2": "任务：",
     "mailBluePrint3": "类别：",
     "mailBluePrint4": "状态：",
-    "clasicFilter1": "全部",
+    "clasicFilter1": "所有",
     "clasicFilter2": "收藏",
     "dropdownFilter1Option1": "类别",
     "dropdownFilter1Option2": "个人",
-    "dropdownFilter1Option3": "商业",
+    "dropdownFilter1Option3": "商务",
     "dropdownFilter2Option1": "状态",
     "dropdownFilter2Option2": "已完成",
     "dropdownFilter2Option3": "未完成"
   },
+  "todoUpload": {
+    "header": "上传您的CSV文件",
+    "text1": "您的CSV文件应包含以下列：",
+    "text2": "将文件拖放到此处或点击以从您的设备中选择",
+    "button": "关闭"
+  },
   "todoFooter": {
-    "footer": "由 Hulk Apps Intern 提供支持"
+    "footer": "由Hulk Apps Intern提供支持"
   }
 }

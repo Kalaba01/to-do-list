@@ -1,30 +1,39 @@
 {
+  "todoWelcome": {
+    "header": "Liste des tâches"
+  },
   "todoApp": {
-    "header": "Réalisez vos tâches!"
+    "header": "Faites le travail!"
   },
   "todoForm": {
     "inputPlaceholder": "Je dois...",
-    "option1": "Sélectionner la catégorie",
+    "option1": "Sélectionner une catégorie",
     "option2": "Personnel",
-    "option3": "Affaires",
+    "option3": "Professionnel",
     "noCategoryMsg": "Veuillez sélectionner une catégorie!"
   },
   "todoEdit": {
     "inputPlaceholder": "Mettre à jour la tâche"
   },
   "todoList": {
-    "mailBluePrint1": "Voici ma liste de tâches:",
-    "mailBluePrint2": "Tâche:",
-    "mailBluePrint3": "Catégorie:",
-    "mailBluePrint4": "Statut:",
-    "clasicFilter1": "Tous",
+    "mailBluePrint1": "Voici ma liste des tâches :",
+    "mailBluePrint2": "Tâche :",
+    "mailBluePrint3": "Catégorie :",
+    "mailBluePrint4": "Statut :",
+    "clasicFilter1": "Tout",
     "clasicFilter2": "Favoris",
     "dropdownFilter1Option1": "Catégorie",
     "dropdownFilter1Option2": "Personnel",
-    "dropdownFilter1Option3": "Affaires",
+    "dropdownFilter1Option3": "Professionnel",
     "dropdownFilter2Option1": "Statut",
     "dropdownFilter2Option2": "Terminé",
-    "dropdownFilter2Option3": "Incomplet"
+    "dropdownFilter2Option3": "Non terminé"
+  },
+  "todoUpload": {
+    "header": "Téléchargez votre fichier CSV",
+    "text1": "Votre fichier CSV doit comporter les colonnes suivantes :",
+    "text2": "Faites glisser et déposez le fichier ici ou cliquez pour sélectionner depuis votre appareil",
+    "button": "Fermer"
   },
   "todoFooter": {
     "footer": "Propulsé par Hulk Apps Intern"

@@ -3,7 +3,7 @@ import { FaFileUpload } from "react-icons/fa";
 import Papa from "papaparse";
 import "./TodoUpload.css";
 
-const TodoUpload = ({ validateAndUploadTodos, validateFile, userId, isUploadPopupOpen, setIsUploadPopupOpen }) => {
+const TodoUpload = ({ validateAndUploadTodos, validateFile, userId, isUploadPopupOpen, setIsUploadPopupOpen, t }) => {
   const [validationMessage, setValidationMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
@@ -85,11 +85,11 @@ const TodoUpload = ({ validateAndUploadTodos, validateFile, userId, isUploadPopu
       {isUploadPopupOpen && (
         <div className="upload-popup">
           <div className="upload-popup-content">
-            <h3>Upload your CSV file</h3>
+            <h3>{t("todoUpload.header")}</h3>
             <p className="upload-instructions">
-              Your CSV file should have the following columns: <strong>task</strong>, <strong>category</strong>
+              {t("todoUpload.text1")} <strong>task</strong>, <strong>category</strong>
             </p>
-            <p>Drag and drop the file here or click to select from your device</p>
+            <p>{t("todoUpload.text2")}</p>
             <div
               className="drop-zone"
               onDragOver={handleDragOver}
@@ -106,7 +106,7 @@ const TodoUpload = ({ validateAndUploadTodos, validateFile, userId, isUploadPopu
               onChange={handleFileChange}
             />
             {validationMessage && <p className="validation-message error">{validationMessage}</p>}
-            <button onClick={closePopup}>Close</button>
+            <button onClick={closePopup}>{t("todoUpload.button")}</button>
           </div>
         </div>
       )}

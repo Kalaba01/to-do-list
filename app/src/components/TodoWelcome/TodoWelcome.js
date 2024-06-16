@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaClipboardList } from 'react-icons/fa';
 import './TodoWelcome.css';
 
-const TodoWelcome = ({ onAnimationComplete }) => {
+const TodoWelcome = ({ onAnimationComplete, t }) => {
   return (
     <motion.div
       className="welcome-screen"
@@ -13,7 +13,7 @@ const TodoWelcome = ({ onAnimationComplete }) => {
       onAnimationComplete={onAnimationComplete}
     >
       <motion.h1 className="welcome-text">
-        Todo List <FaClipboardList />
+        {t("todoWelcome.header")} <FaClipboardList />
       </motion.h1>
     </motion.div>
   );

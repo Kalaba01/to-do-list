@@ -1,4 +1,7 @@
 {
+  "todoWelcome": {
+    "header": "Todo List"
+  },
   "todoApp": {
     "header": "Get Things Done!"
   },
@@ -25,6 +28,12 @@
     "dropdownFilter2Option1": "Status",
     "dropdownFilter2Option2": "Completed",
     "dropdownFilter2Option3": "Incompleted"
+  },
+  "todoUpload": {
+    "header": "Upload your CSV file",
+    "text1": "Your CSV file should have the following columns:",
+    "text2": "Drag and drop the file here or click to select from your device",
+    "button": "Close"
   },
   "todoFooter": {
     "footer": "Powered by Hulk Apps Intern"
